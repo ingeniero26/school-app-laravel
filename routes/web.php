@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,52 @@ Route::post('login', [AuthController::class, 'AuthLogin']);
 //cessar sesion
 Route::get('logout', [AuthController::class, 'logout']);
 
-Route::get('admin/dashboard', function () {
-    return view('admin.dashboard');
-});
+
 
 Route::get('admin/admin/list', function () {
     return view('admin.admin.list');
+});
+
+//rutas para el administrador
+Route::group(['middleware'=>'admin'],function() {
+    // Route::get('admin/dashboard', function () {
+    //     return view('admin.dashboard');
+    // });
+    Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+});
+
+//docente
+Route::group(['middleware'=>'teacher'],function() {
+    // Route::get('teacher/dashboard', function () {
+    //     return view('admin.dashboard');
+    // });
+    Route::get('teacher/dashboard', [DashboardController::class, 'dashboard']);
+
+});
+
+//alumnos
+Route::group(['middleware'=>'student'],function() {
+    // Route::get('student/dashboard', function () {
+    //     return view('admin.dashboard');
+    // });
+    Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
+
+});
+
+//padre de familia
+Route::group(['middleware'=>'parent'],function() {
+    // Route::get('parent/dashboard', function () {
+    //     return view('admin.dashboard');
+    // });
+    Route::get('parent/dashboard', [DashboardController::class, 'dashboard']);
+
+});
+
+//usuario general
+Route::group(['middleware'=>'schooll'],function() {
+    // Route::get('schooll/dashboard', function () {
+    //     return view('admin.dashboard');
+    // });
+    Route::get('schooll/dashboard', [DashboardController::class, 'dashboard']);
+
 });

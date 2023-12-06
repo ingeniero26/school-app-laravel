@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>{{ !empty($header_title)?$header_title : 'SisSchooll'  }}</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,19 +25,18 @@
   <link rel="stylesheet" href="{{ url('public/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ url('public/plugins/summernote/summernote-bs4.min.css') }}">
+  @yield('style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
+  {{--  <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake"
      src="{{ url('public/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div>  --}}
 
   @include('layouts.header');
-
-
 
   @yield('content')
 
@@ -84,5 +83,6 @@
 {{--  <script src="{{ url('public/dist/js/demo.js') }}"></script>-->  --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ url('public/dist/js/pages/dashboard.js') }}"></script>
+@yield('script')
 </body>
 </html>
