@@ -9,13 +9,10 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Simple Tables</h1>
+          <h1>Listado Admin</h1>
         </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Simple Tables</li>
-          </ol>
+        <div class="col-sm-6" style="text-align:right">
+          <a href="{{ url('admin/admin/add') }}" class="btn btn-primary">Nuevo Administrador</a>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -28,62 +25,38 @@
 
         <!-- /.col -->
         <div class="col-md-12">
+            @include('_message')
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Striped Full Width Table</h3>
+              <h3 class="card-title">Listado de Administradores</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Task</th>
-                    <th>Progress</th>
-                    <th style="width: 40px">Label</th>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Creado</th>
+                    <th>Acciones</th>
+
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1.</td>
-                    <td>Update software</td>
-                    <td>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-danger">55%</span></td>
-                  </tr>
-                  <tr>
-                    <td>2.</td>
-                    <td>Clean database</td>
-                    <td>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar bg-warning" style="width: 70%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-warning">70%</span></td>
-                  </tr>
-                  <tr>
-                    <td>3.</td>
-                    <td>Cron job running</td>
-                    <td>
-                      <div class="progress progress-xs progress-striped active">
-                        <div class="progress-bar bg-primary" style="width: 30%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-primary">30%</span></td>
-                  </tr>
-                  <tr>
-                    <td>4.</td>
-                    <td>Fix and squish bugs</td>
-                    <td>
-                      <div class="progress progress-xs progress-striped active">
-                        <div class="progress-bar bg-success" style="width: 90%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-success">90%</span></td>
-                  </tr>
+                     @foreach($getRecord as $value)
+                        <tr>
+                            <td>{{$value->id  }}</td>
+                            <td>{{$value->name  }}</td>
+                            <td>{{$value->email  }}</td>
+                            <td>{{$value->created_at  }}</td>
+                            <td>
+                                <a href="{{ url('admin/admin/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
+                                <a href="{{ url('admin/admin/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
+                            </td>
+                           
+                        </tr>
+                     @endforeach
                 </tbody>
               </table>
             </div>
