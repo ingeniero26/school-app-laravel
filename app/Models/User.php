@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Request;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -44,31 +45,43 @@ class User extends Authenticatable
     ];
 
 // mostrar datos del admin por ID
-    static public function getSingle($id) {
+    public static function getSingle($id)
+    {
         return self::find($id);
     }
 
-
-
 //listado de administradores
-    static public function getAdmin() {
-        return self::select('users.*')
-                    ->where('user_type','=',1)
-                    ->where('is_delete','=',0)
-                    ->orderBy('id','desc')->get();
+    public static    function getAdmin()
+    {
+        $return = self::select('users.*')
+            ->where('user_type', '=', 1)
+            ->where('is_delete', '=', 0);
+
+            if (!empty(Request::get('name'))) {
+                $return = $return->where('name', 'like',
+                '%'.Request::get('name').'%');
+            }
+
+        if (!empty(Request::get('email'))) {
+            $return = $return->where('email', 'like',
+            '%'.Request::get('email').'%');
+        }
+        if (!empty(Request::get('date'))) {
+            $return = $return->whereDate('created_at', '=',
+            Request::get('date'));
+        }
+        $return = $return->orderBy('id', 'desc')
+                          ->paginate(10);
+        return $return;
     }
 
-
-
-
-
-    static public function getEmailSingle($email)
+    public static function getEmailSingle($email)
     {
-        return User::where('email','=',$email)->first();
+        return User::where('email', '=', $email)->first();
     }
 
-    static public function getTokenSingle($remember_token)
+    public static function getTokenSingle($remember_token)
     {
-        return User::where('remember_token','=',$remember_token)->first();
+        return User::where('remember_token', '=', $remember_token)->first();
     }
 }

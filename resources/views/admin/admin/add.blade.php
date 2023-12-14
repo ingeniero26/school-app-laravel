@@ -59,7 +59,7 @@
 
                 <div class="card-footer">
                   <button type="submit"
-                  class="btn btn-primary">Regitrar</button>
+                  class="btn btn-primary">Registrar</button>
                 </div>
               </form>
             </div>
