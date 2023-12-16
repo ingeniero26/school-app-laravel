@@ -12,7 +12,7 @@
           <h1>Listado Clases</h1>
         </div>
         <div class="col-sm-6" style="text-align:right">
-          <a href="{{ url('admin/journeys/add') }}" class="btn btn-primary">Nueva Jornada</a>
+          <a href="{{ url('admin/subject/add') }}" class="btn btn-primary">Nueva Jornada</a>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -54,7 +54,7 @@
                     class="btn btn-primary"
                      style="margin-top: 30px">
                     Buscar</button>
-                    <a href="{{ url('admin/journeys/list') }}"
+                    <a href="{{ url('admin/subject/list') }}"
                     class="btn btn-success"
                      style="margin-top: 30px">Limpiar</a>
                   </div>
@@ -82,7 +82,7 @@
           <div class="card">
             <div class="card-header">
                <h3 class="card-title"><b> Listado de
-              Clases (Total: {{  $getRecord->total() }})</b> </h3> 
+              Asignaturas (Total: {{  $getRecord->total() }})</b> </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -91,8 +91,7 @@
                   <tr>
                     <th>#</th>
                     <th>Nombre</th>
-                    <th>Abreviatura</th>
-
+                    <th>Tipo</th>
                     <th>Estado</th>
                     <th>Usuario</th>
                     <th>Creado</th>
@@ -100,11 +99,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                     @foreach($getRecord as $value)
+                       @foreach($getRecord as $value)
                        <tr>
                            <td>{{$value->id  }}</td>
                            <td>{{$value->name  }}</td>
-                           <td>{{$value->abbreviation  }}</td>
+                           <td>{{$value->type  }}</td>
                            <td>
                             @if($value->status==0)
                             Activo
@@ -115,16 +114,16 @@
                            <td>{{$value->created_by_name  }}</td>
                            <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
                            <td>
-                               <a href="{{ url('admin/journeys/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
-                               <a href="{{ url('admin/journeys/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
+                               <a href="{{ url('admin/subject/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
+                               <a href="{{ url('admin/subject/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
                            </td>
 
                        </tr>
-                    @endforeach  
+                    @endforeach
                </tbody>
               </table>
               <div style="padding:10px; float:right;">
-                 {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}  
+                   {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div>
             </div>
             <!-- /.card-body -->

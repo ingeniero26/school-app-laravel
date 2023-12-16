@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JourneysController;
+use App\Http\Controllers\SubjectController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +33,12 @@ Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'PostReset']);
 
-
-
 // Route::get('admin/admin/list', function () {
 //     return view('admin.admin.list');
 // });
 
 //rutas para el administrador
-Route::group(['middleware'=>'admin'],function() {
+Route::group(['middleware' => 'admin'], function () {
     // Route::get('admin/dashboard', function () {
     //     return view('admin.dashboard');
     // });
@@ -49,26 +48,39 @@ Route::group(['middleware'=>'admin'],function() {
     Route::post('admin/admin/add', [AdminController::class, 'insert']);
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
-     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+    Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
 
-//ruta para las clases 
-Route::get('admin/class/list', [ClassController::class, 'list']);
-Route::get('admin/class/add', [ClassController::class, 'add']);
-Route::post('admin/class/add', [ClassController::class, 'insert']);
-Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
-Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
-Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
-
+//ruta para las clases
+    Route::get('admin/class/list', [ClassController::class, 'list']);
+    Route::get('admin/class/add', [ClassController::class, 'add']);
+    Route::post('admin/class/add', [ClassController::class, 'insert']);
+    Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
+    Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
+    Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
 
 //jornadas
-Route::get('admin/journeys/list', [JourneysController::class, 'list']);
+    Route::get('admin/journeys/list', [JourneysController::class, 'list']);
+    Route::get('admin/journeys/add', [JourneysController::class, 'add']);
+    Route::post('admin/journeys/add', [JourneysController::class, 'insert']);
+    Route::get('admin/journeys/edit/{id}', [JourneysController::class, 'edit']);
+    Route::post('admin/journeys/edit/{id}', [JourneysController::class, 'update']);
+    Route::get('admin/journeys/delete/{id}', [JourneysController::class, 'delete']);
+
+//asignaturas
+Route::get('admin/subject/list', [SubjectController::class, 'list']);
+Route::get('admin/subject/add', [SubjectController::class, 'add']);
+Route::post('admin/subject/add', [SubjectController::class, 'insert']);
+Route::get('admin/subject/edit/{id}', [SubjectController::class, 'edit']);
+Route::post('admin/subject/edit/{id}', [SubjectController::class, 'update']);
+Route::get('admin/subject/delete/{id}', [SubjectController::class, 'delete']);
+
 
 
 
 });
 
 //docente
-Route::group(['middleware'=>'teacher'],function() {
+Route::group(['middleware' => 'teacher'], function () {
     // Route::get('teacher/dashboard', function () {
     //     return view('admin.dashboard');
     // });
@@ -77,7 +89,7 @@ Route::group(['middleware'=>'teacher'],function() {
 });
 
 //alumnos
-Route::group(['middleware'=>'student'],function() {
+Route::group(['middleware' => 'student'], function () {
     // Route::get('student/dashboard', function () {
     //     return view('admin.dashboard');
     // });
@@ -86,7 +98,7 @@ Route::group(['middleware'=>'student'],function() {
 });
 
 //padre de familia
-Route::group(['middleware'=>'parent'],function() {
+Route::group(['middleware' => 'parent'], function () {
     // Route::get('parent/dashboard', function () {
     //     return view('admin.dashboard');
     // });
@@ -95,7 +107,7 @@ Route::group(['middleware'=>'parent'],function() {
 });
 
 //usuario general
-Route::group(['middleware'=>'schooll'],function() {
+Route::group(['middleware' => 'schooll'], function () {
     // Route::get('schooll/dashboard', function () {
     //     return view('admin.dashboard');
     // });
