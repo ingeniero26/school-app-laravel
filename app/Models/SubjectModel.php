@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\FuncCall;
 use Request;
 
 class SubjectModel extends Model
@@ -19,13 +20,16 @@ class SubjectModel extends Model
             $return = $return->where('subject.name', 'like',
                 '%' . Request::get('name') . '%');
         }
-         if (!empty(Request::get('date'))) {
-             $return = $return->whereDate('subject.created_at', '=',
-             Request::get('date'));
-         }
+        if (!empty(Request::get('type'))) {
+            $return = $return->where('subject.type', '=', Request::get('type'));
+        }
+        if (!empty(Request::get('date'))) {
+            $return = $return->whereDate('subject.created_at', '=',
+                Request::get('date'));
+        }
         $return = $return->where('subject.is_delete', '=', 0)
             ->orderBy('subject.id', 'desc')
-            ->paginate(20);
+            ->paginate(10);
         return $return;
         //$return = $return->orderBy('class.id', 'desc')
         //    ->paginate(10);
@@ -36,5 +40,15 @@ class SubjectModel extends Model
     public static function getSubject($id)
     {
         return self::find($id);
+    }
+
+    public static function getSubjectClass() {
+        $return = SubjectModel::select('subject.*')
+        ->join('users', 'users.id', 'subject.created_by')
+        ->where('subject.is_delete', '=', 0)
+        ->where('subject.status', '=', 0)
+        ->orderBy('subject.name', 'asc')
+        ->get();
+    return $return;
     }
 }

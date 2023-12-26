@@ -9,10 +9,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Listado Clases</h1>
+          <h1>Listado Jornadas</h1>
         </div>
         <div class="col-sm-6" style="text-align:right">
-          <a href="{{ url('admin/journeys/add') }}" class="btn btn-primary">Nueva Jornada</a>
+          <a href="{{ url('admin/journeys/add') }}"
+           class="btn btn-primary">Nueva Jornada</a>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -82,7 +83,7 @@
           <div class="card">
             <div class="card-header">
                <h3 class="card-title"><b> Listado de
-              Clases (Total: {{  $getRecord->total() }})</b> </h3> 
+              Clases (Total: {{  $getRecord->total() }})</b> </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -120,11 +121,11 @@
                            </td>
 
                        </tr>
-                    @endforeach  
+                    @endforeach
                </tbody>
               </table>
               <div style="padding:10px; float:right;">
-                 {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}  
+                 {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div>
             </div>
             <!-- /.card-body -->

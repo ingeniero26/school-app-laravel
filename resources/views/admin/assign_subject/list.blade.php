@@ -9,10 +9,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Listado Materias</h1>
+          <h1><i class="fas fa-american-sign-language-interpreting    "></i> Clases</h1>
         </div>
         <div class="col-sm-6" style="text-align:right">
-          <a href="{{ url('admin/subject/add') }}" class="btn btn-primary">Nueva Jornada</a>
+          <a href="{{ url('admin/assign_subject/add') }}"
+           class="btn btn-primary">Asignar Clases</a>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -36,12 +37,18 @@
                 <div class="card-body">
                 <div class="row">
                   <div class="form-group col-md-3">
-                    <label>Nombre</label>
+                    <label>Nombre Programa</label>
                     <input type="text" class="form-control"
-                    value="{{ Request::get('name') }}"
-                     placeholder="nombre" name="name">
+                    value="{{ Request::get('class_name') }}"
+                     placeholder="Programa" name="class_name">
                   </div>
                   <div class="form-group col-md-3">
+                    <label>Nombre Materia</label>
+                    <input type="text" class="form-control"
+                    value="{{ Request::get('subject_name') }}"
+                     placeholder="Asignatura" name="subject_name">
+                  </div>
+                  {{--  <div class="form-group col-md-3">
                     <label>Tipo Asignatura</label>
                     <select name="type" id=""
                     class="form-control">
@@ -49,7 +56,7 @@
                     <option {{ (Request::get('type') =='Theory')? 'selected' : ''}} value="Theory">Theory</option>
                     <option {{ (Request::get('type') =='Practical')? 'selected' : ''}} value="Practical">Practical</option>
                     </select>
-                  </div>
+                  </div>  --}}
                   <div class="form-group col-md-3">
                     <label>Fecha</label>
                     <input type="date"
@@ -63,7 +70,7 @@
                     class="btn btn-primary"
                      style="margin-top: 30px">
                     Buscar</button>
-                    <a href="{{ url('admin/subject/list') }}"
+                    <a href="{{ url('admin/assign_subject/list') }}"
                     class="btn btn-success"
                      style="margin-top: 30px">Limpiar</a>
                   </div>
@@ -91,7 +98,7 @@
           <div class="card">
             <div class="card-header">
                <h3 class="card-title"><b> Listado de
-              Asignaturas (Total: {{  $getRecord->total() }})</b> </h3>
+              {{--  Asignaturas (Total: {{  $getRecord->total() }})</b> </h3>  --}}
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -99,20 +106,23 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Estado</th>
+                    <th>Programa</th>
+                    <th>Materia</th>
+
                     <th>Usuario</th>
+                    <th>Estado</th>
                     <th>Creado</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                       @foreach($getRecord as $value)
+                        @foreach($getRecord as $value)
                        <tr>
                            <td>{{$value->id  }}</td>
-                           <td>{{$value->name  }}</td>
-                           <td>{{$value->type  }}</td>
+                           <td>{{$value->class_name  }}</td>
+                           <td>{{$value->subject_name  }}</td>
+                           <td>{{$value->created_by_name  }}</td>
+
                            <td>
                             @if($value->status==0)
                             Activo
@@ -120,11 +130,12 @@
                             Inactivo
                             @endif
                            </td>
-                           <td>{{$value->created_by_name  }}</td>
+
                            <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
                            <td>
-                               <a href="{{ url('admin/subject/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
-                               <a href="{{ url('admin/subject/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
+                               <a href="{{ url('admin/assign_subject/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
+                               <a href="{{ url('admin/assign_subject/edit_single/'.$value->id) }}" class="btn btn-info">Cambiar</a>
+                               <a href="{{ url('admin/assign_subject/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
                            </td>
 
                        </tr>

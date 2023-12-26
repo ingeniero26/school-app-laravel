@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JourneysController;
 use App\Http\Controllers\SubjectController;
@@ -67,16 +68,25 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/journeys/delete/{id}', [JourneysController::class, 'delete']);
 
 //asignaturas
-Route::get('admin/subject/list', [SubjectController::class, 'list']);
-Route::get('admin/subject/add', [SubjectController::class, 'add']);
-Route::post('admin/subject/add', [SubjectController::class, 'insert']);
-Route::get('admin/subject/edit/{id}', [SubjectController::class, 'edit']);
-Route::post('admin/subject/edit/{id}', [SubjectController::class, 'update']);
-Route::get('admin/subject/delete/{id}', [SubjectController::class, 'delete']);
+    Route::get('admin/subject/list', [SubjectController::class, 'list']);
+    Route::get('admin/subject/add', [SubjectController::class, 'add']);
+    Route::post('admin/subject/add', [SubjectController::class, 'insert']);
+    Route::get('admin/subject/edit/{id}', [SubjectController::class, 'edit']);
+    Route::post('admin/subject/edit/{id}', [SubjectController::class, 'update']);
+    Route::get('admin/subject/delete/{id}', [SubjectController::class, 'delete']);
+
+    //asignar clases a las materias
+    Route::get('admin/assign_subject/list', [ClassSubjectController::class, 'list']);
+    Route::get('admin/assign_subject/add', [ClassSubjectController::class, 'add']);
+    Route::post('admin/assign_subject/add', [ClassSubjectController::class, 'insert']);
+    Route::get('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'edit']);
+    Route::post('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'update']);
+    Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete']);
 
 
-
-
+    //editar un solor registro
+    Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
+    Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
 });
 
 //docente

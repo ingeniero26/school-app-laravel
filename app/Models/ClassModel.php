@@ -33,6 +33,16 @@ class ClassModel extends Model
 
     }
 
+    public static function getClassSubject() {
+        $return = ClassModel::select('class.*')
+        ->join('users', 'users.id', 'class.created_by')
+        ->where('class.is_delete', '=', 0)
+        ->where('class.status', '=', 0)
+        ->orderBy('class.name', 'asc')
+        ->get();
+    return $return;
+    }
+
     // mostrar datos del admin por ID
     public static function getClass($id)
     {
