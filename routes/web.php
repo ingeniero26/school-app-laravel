@@ -7,6 +7,8 @@ use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JourneysController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,6 +89,14 @@ Route::group(['middleware' => 'admin'], function () {
     //editar un solor registro
     Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
+
+
+    Route::get('admin/change_password', [UserController::class, 'change_password']);
+    Route::post('admin/change_password', [UserController::class, 'update_change_password']);
+
+
+
+
 });
 
 //docente
@@ -95,6 +105,11 @@ Route::group(['middleware' => 'teacher'], function () {
     //     return view('admin.dashboard');
     // });
     Route::get('teacher/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('teacher/change_password', [UserController::class, 'change_password']);
+    Route::post('teacher/change_password', [UserController::class, 'update_change_password']);
+
+
 
 });
 
@@ -105,6 +120,11 @@ Route::group(['middleware' => 'student'], function () {
     // });
     Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
 
+    Route::get('student/change_password', [UserController::class, 'change_password']);
+    Route::post('student/change_password', [UserController::class, 'update_change_password']);
+
+
+
 });
 
 //padre de familia
@@ -113,6 +133,10 @@ Route::group(['middleware' => 'parent'], function () {
     //     return view('admin.dashboard');
     // });
     Route::get('parent/dashboard', [DashboardController::class, 'dashboard']);
+    Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('parent/change_password', [UserController::class, 'change_password']);
+    Route::post('parent/change_password', [UserController::class, 'update_change_password']);
 
 });
 
@@ -122,5 +146,9 @@ Route::group(['middleware' => 'schooll'], function () {
     //     return view('admin.dashboard');
     // });
     Route::get('schooll/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('parent/change_password', [UserController::class, 'change_password']);
+    Route::post('parent/change_password', [UserController::class, 'update_change_password']);
+
 
 });
