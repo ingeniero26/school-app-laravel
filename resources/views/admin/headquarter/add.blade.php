@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Registro de Asignaturas</h1>
+            <h1>Registro de Sedes</h1>
           </div>
 
         </div>
@@ -30,29 +30,18 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label>Nombre Clase</label>
-                    <select name="class_id" id=""
-                    class="form-control" required>
-                        <option value="">Seleccione una clase</option>
-                       @foreach($getClassSubject as $class)
-                           <option value="{{ $class->id }}">{{ $class->name }}</option>
-                       @endforeach
-                    </select>
-
+                    <input type="text" class="form-control"
+                    placeholder="nombre sede" name="name">
                   </div>
-
                   <div class="form-group">
-                    <label>Nombre Asignatura</label>
-                       @foreach($getSubjectClass as $subject)
-                       <div>
-                        <label style="font-weight: normal">
-                        <input type="checkbox" value="{{ $subject->id }}" name="subject_id[]" id=""> {{ $subject->name }}
-                       </label>
-                       </div>
-
-                 @endforeach
-
+                    <label>Ingresa el año</label>
+                    <input type="text"
+                     name="address" required
+                    class="form-control"
+                    placeholder="Direccion">
 
                   </div>
+
                   <div class="form-group">
                     <label>Estado</label>
                     <select name="status" id="" class="form-control">
@@ -90,4 +79,3 @@
   </div>
 
 @endsection
-

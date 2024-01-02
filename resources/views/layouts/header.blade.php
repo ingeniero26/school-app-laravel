@@ -152,6 +152,15 @@
                </a>
              </li>
              <li class="nav-item">
+                <a href="{{ url('admin/student/list') }}"
+                 class="nav-link  @if(Request::segment(2)=='student') active @endif"">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                    Estudiantes
+                  </p>
+                </a>
+              </li>
+             <li class="nav-item">
                 <a href="{{ url('admin/class/list') }}"
                  class="nav-link  @if(Request::segment(2)=='class') active @endif"">
                   <i class="nav-icon far fa-user"></i>
@@ -181,13 +190,23 @@
 
               <li class="nav-item">
                 <a href="{{ url('admin/assign_subject/list') }}"
-                 class="nav-link  @if(Request::segment(2)=='assign_subject/list') active @endif"">
+                 class="nav-link  @if(Request::segment(2)=='assign_subject') active @endif"">
                   <i class="nav-icon far fa-user"></i>
                   <p>
                     Asignar Materias
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('admin/headquarter/list') }}"
+                 class="nav-link  @if(Request::segment(2)=='headquarter') active @endif"">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                    Sedes
+                  </p>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a href="{{ url('admin/change_password') }}"
                  class="nav-link  @if(Request::segment(2)=='change_password') active @endif"">

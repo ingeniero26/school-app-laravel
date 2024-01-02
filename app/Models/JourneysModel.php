@@ -38,4 +38,15 @@ class JourneysModel extends Model
      {
          return self::find($id);
      }
+
+
+     public static function getJourneySelect() {
+        $return = JourneysModel::select('journeys.*')
+        ->join('users', 'users.id', 'journeys.created_by')
+        ->where('journeys.is_delete', '=', 0)
+        ->where('journeys.status', '=', 0)
+        ->orderBy('journeys.name', 'asc')
+        ->get();
+    return $return;
+    }
 }

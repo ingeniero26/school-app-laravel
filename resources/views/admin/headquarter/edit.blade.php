@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Registro de Asignaturas</h1>
+            <h1>Editar de Sedes</h1>
           </div>
 
         </div>
@@ -30,34 +30,25 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label>Nombre Clase</label>
-                    <select name="class_id" id=""
-                    class="form-control" required>
-                        <option value="">Seleccione una clase</option>
-                       @foreach($getClassSubject as $class)
-                           <option value="{{ $class->id }}">{{ $class->name }}</option>
-                       @endforeach
-                    </select>
-
+                    <input type="text" class="form-control"
+                    placeholder="nombre clase" name="name"
+                    value="{{ $getRecord->name}}">
                   </div>
-
                   <div class="form-group">
-                    <label>Nombre Asignatura</label>
-                       @foreach($getSubjectClass as $subject)
-                       <div>
-                        <label style="font-weight: normal">
-                        <input type="checkbox" value="{{ $subject->id }}" name="subject_id[]" id=""> {{ $subject->name }}
-                       </label>
-                       </div>
-
-                 @endforeach
-
+                    <label>Ingresa la direccion</label>
+                    <input type="text"
+                     name="address" required
+                    class="form-control"
+                    placeholder="Enter direccion"
+                    value="{{ $getRecord->address}}">
 
                   </div>
+
                   <div class="form-group">
                     <label>Estado</label>
                     <select name="status" id="" class="form-control">
-                        <option value="0">Activo</option>
-                        <option value="1">Inactivo</option>
+                        <option {{ ($getRecord->status == 0)? 'selected' : ''}} value="0">Activo</option>
+                        <option {{ ($getRecord->status == 1)? 'selected' : '' }} value="1">Inactivo</option>
                     </select>
 
                   </div>
@@ -67,7 +58,7 @@
 
                 <div class="card-footer">
                   <button type="submit"
-                  class="btn btn-primary">Registrar</button>
+                  class="btn btn-warning">Editar</button>
                 </div>
               </form>
             </div>
@@ -90,4 +81,3 @@
   </div>
 
 @endsection
-

@@ -50,27 +50,44 @@ class User extends Authenticatable
         return self::find($id);
     }
 
+//getStudent estudiante
+
+
+public static function getStudent()
+{
+    $return = self::select('users.*')
+        ->where('user_type', '=', 3)
+        ->where('is_delete', '=', 0);
+
+    if (!empty(Request::get('name'))) {
+        $return = $return->where('name', 'like',
+            '%' . Request::get('name') . '%');
+    }
+
+    if (!empty(Request::get('email'))) {
+        $return = $return->where('email', 'like',
+            '%' . Request::get('email') . '%');
+    }
+    if (!empty(Request::get('date'))) {
+        $return = $return->whereDate('created_at', '=',
+            Request::get('date'));
+    }
+    $return = $return->orderBy('id', 'desc')
+        ->paginate(10);
+    return $return;
+}
+//type_user = 1 , admin
+//type_user = 2 , docente
+//type_user = 3 , estudiantes
+//type_user = 4 , padre de familia
+
 //listado de administradores
     public static function getAdmin()
     {
         $return = self::select('users.*')
-            ->where('user_type', '=', 1)
-            ->where('is_delete', '=', 0);
-
-        if (!empty(Request::get('name'))) {
-            $return = $return->where('name', 'like',
-                '%' . Request::get('name') . '%');
-        }
-
-        if (!empty(Request::get('email'))) {
-            $return = $return->where('email', 'like',
-                '%' . Request::get('email') . '%');
-        }
-        if (!empty(Request::get('date'))) {
-            $return = $return->whereDate('created_at', '=',
-                Request::get('date'));
-        }
-        $return = $return->orderBy('id', 'desc')
+            ->where('users.user_type', '=', 1)
+            ->where('users.is_delete', '=', 0);
+        $return = $return->orderBy('users.id', 'desc')
             ->paginate(10);
         return $return;
     }
@@ -83,5 +100,19 @@ class User extends Authenticatable
     public static function getTokenSingle($remember_token)
     {
         return User::where('remember_token', '=', $remember_token)->first();
+    }
+
+
+    //OBTENER LA IMAGEN
+    public function getProfile()
+    {
+        if(!empty($this->profile_pic)&& file_exists('upload/profile/'.$this->profile_pic))
+        {
+            return url('upload/profile/'.$this->profile_pic);
+        }
+        else
+        {
+            return "";
+        }
     }
 }

@@ -8,6 +8,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JourneysController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HeadquartersController;
+use App\Http\Controllers\StudentController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -46,12 +49,25 @@ Route::group(['middleware' => 'admin'], function () {
     //     return view('admin.dashboard');
     // });
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+
     Route::get('admin/admin/list', [AdminController::class, 'list']);
     Route::get('admin/admin/add', [AdminController::class, 'add']);
     Route::post('admin/admin/add', [AdminController::class, 'insert']);
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+
+// rutas para el estudiante
+
+Route::get('admin/student/list', [StudentController::class, 'list']);
+Route::get('admin/student/add', [StudentController::class, 'add']);
+Route::post('admin/student/add', [StudentController::class, 'insert']);
+Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
+Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
+Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
+
+
+
 
 //ruta para las clases
     Route::get('admin/class/list', [ClassController::class, 'list']);
@@ -94,6 +110,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/change_password', [UserController::class, 'change_password']);
     Route::post('admin/change_password', [UserController::class, 'update_change_password']);
 
+    //asignaturas
+    Route::get('admin/headquarter/list', [HeadquartersController::class, 'list']);
+    Route::get('admin/headquarter/add', [HeadquartersController::class, 'add']);
+    Route::post('admin/headquarter/add', [HeadquartersController::class, 'insert']);
+    Route::get('admin/headquarter/edit/{id}', [HeadquartersController::class, 'edit']);
+    Route::post('admin/headquarter/edit/{id}', [HeadquartersController::class, 'update']);
+    Route::get('admin/headquarter/delete/{id}', [HeadquartersController::class, 'delete']);
 
 
 
