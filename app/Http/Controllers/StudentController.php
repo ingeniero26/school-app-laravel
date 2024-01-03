@@ -138,6 +138,7 @@ $student->name = trim($request->name);
 $student->last_name = trim($request->last_name);
 $student->document_type = trim($request->document_type);
 
+
 $student->admission_number = trim($request->admission_number);
 $student->roll_number = trim($request->roll_number);
 $student->class_id = trim($request->class_id);
