@@ -48,6 +48,20 @@
                                 {{ $errors->first('last_name') }}
                                </div>
                          </div>
+                         <div class="form-group col-md-6">
+                            <label> Tipo Documento<span style="color: red"></span> </label>
+                            <select name="document_type" id="" required class="form-control">
+                                <option value="">Seleccione Tipo Documento</option>
+                                <option {{ (old('document_type',$getStudent->document_type)=='CEDULA')?'selected' : '' }} value="CEDULA">CEDULA</option>
+                                <option {{ (old('document_type',$getStudent->document_type)=='TI')?'selected' : '' }}  value="TI">TI</option>
+                                <option {{ (old('document_type',$getStudent->document_type)=='REGISTRO_CIVIL')?'selected' : '' }}  value="REGISTRO_CIVIL">REGISTRO CIVIL</option>
+                                <option {{ (old('document_type',$getStudent->document_type)=='PASAPORTE')?'selected' : '' }} value="PASAPORTE">PASAPORTE</option>
+                                <option {{ (old('document_type',$getStudent->document_type)=='OTRO')?'selected' : '' }} value="OTRO">OTRO</option>
+                            </select>
+                            <div style="color:red;">
+                                {{ $errors->first('document_type') }}
+                               </div>
+                         </div>
 
                          <div class="form-group col-md-6">
                             <label> Numero de Matricula<span style="color: red">*</span> </label>
@@ -60,10 +74,10 @@
                                </div>
                          </div>
                          <div class="form-group col-md-6">
-                            <label> Numero de Folio<span style="color: red"></span> </label>
+                            <label> Numero de Documento<span style="color: red"></span> </label>
                             <input type="text" class="form-control"
                             value="{{ old('roll_number',$getStudent->roll_number) }}"
-                            placeholder="Folio No" name="roll_number">
+                            placeholder="Documento" name="roll_number">
                          </div>
 
                          <div class="form-group col-md-6">

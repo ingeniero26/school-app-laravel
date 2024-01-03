@@ -91,50 +91,71 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Listado de
-              Administradores (Total: {{  $getRecord->total() }})</h3>
+              Estudiantes (Total: {{  $getRecord->total() }})</h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body p-0">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Email</th>
-                    <th>No Admision</th>
-                    <th>Folio</th>
-                    <th>Genero</th>
-                    <th>Fecha Ingreso</th>
-                    <th>Raza</th>
+            <div class="card-body p-0" style="overflow: auto;">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Tipo Documento</th>
+                            <th>No Documento</th>
+                            <th>Email</th>
+                            <th>Fecha Nac</th>
+                            <th>Fecha Matricula</th>
+                            <th>Programa</th>
+                            <th>Sede</th>
+                            <th>Jornada</th>
+                            <th>Genero</th>
+                            <th>Fecha Nacimiento</th>
+                            <th>Raza</th>
 
-                    <th>Creado</th>
-                    <th>Acciones</th>
+                            <th>Creado</th>
+                            <th>Acciones</th>
 
-                  </tr>
-                </thead>
-                <tbody>
-                     @foreach($getRecord as $value)
-                        <tr>
-                            <td>{{$value->id  }}</td>
-                            <td>{{$value->name  }}</td>
-                            <td>{{$value->last_name  }}</td>
-                            <td>{{$value->email  }}</td>
-                            <td>{{$value->admission_number  }}</td>
-                            <td>{{$value->roll_number  }}</td>
-                            <td>{{$value->gender  }}</td>
-                            <td>{{$value->date_of_birth  }}</td>
-                            <td>{{$value->caste  }}</td>
-                            <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
-                            <td>
-                                <a href="{{ url('admin/student/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
-                                <a href="{{ url('admin/student/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
-                            </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                             @foreach($getRecord as $value)
+                                <tr>
+                                    <td>{{$value->id  }}</td>
+                                    <td>
+                                        @if(!empty($value->getProfile()))
+                                            <img src="{{$value->getProfile()  }}" class="img-fluid">
+                                        @endif
 
-                        </tr>
-                     @endforeach
-                </tbody>
-              </table>
+                                    </td>
+                                    <td>{{$value->name  }}</td>
+                                    <td>{{$value->last_name  }}</td>
+                                    <td>{{$value->document_type  }}</td>
+                                    <td>{{$value->roll_number  }}</td>
+                                    <td>{{$value->email  }}</td>
+                                    <td>{{$value->admission_number  }}</td>
+                                    <td>{{$value->admission_date  }}</td>
+                                    <td>{{$value->class_name  }}</td>
+                                    <td>{{$value->headquarter_name  }}</td>
+                                    <td>{{$value->journey_name  }}</td>
+                                    <td>{{$value->gender  }}</td>
+                                    <td>{{$value->date_of_birth  }}</td>
+                                    <td>{{$value->caste  }}</td>
+                                    <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
+                                    <td>
+                                        <a href="{{ url('admin/student/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
+                                        <a href="{{ url('admin/student/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
+                                    </td>
+
+                                </tr>
+                             @endforeach
+                        </tbody>
+                      </table>
+                </div>
+
+
               <div style="padding:10px; float:right;">
 
               {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}

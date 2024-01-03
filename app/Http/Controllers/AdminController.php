@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function add()
     {
-       
+
         $data['header_title'] = 'Add Admin';
         return view('admin.admin.add',$data);
     }
@@ -28,7 +28,7 @@ class AdminController extends Controller
         request()->validate([
             'email'=> 'required|email|unique:users'
         ]);
-        
+
         $user = new User;
         $user->name = trim($request->name);
         $user->email = trim($request->email);
@@ -48,14 +48,14 @@ class AdminController extends Controller
         {
             $data['header_title'] = 'Editar Admin';
             return view('admin.admin.edit',$data);
-        } 
-        else 
+        }
+        else
         {
             abort(404);
         }
-        
+
     }
-    public function update($id,Request $request)
+    public function update($id, Request $request)
     {
         request()->validate([
             'email'=> 'required|email|unique:users,email,',$id

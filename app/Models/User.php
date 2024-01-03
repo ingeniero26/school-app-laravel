@@ -55,9 +55,14 @@ class User extends Authenticatable
 
 public static function getStudent()
 {
-    $return = self::select('users.*')
-        ->where('user_type', '=', 3)
-        ->where('is_delete', '=', 0);
+    $return = User::select('users.*',
+    'class.name as class_name',
+    'headquarters.name as headquarter_name','journeys.name as journey_name')
+      ->join('class', 'class.id', '=', 'users.class_id','left')
+      ->join('headquarters', 'headquarters.id', '=', 'users.headquarter_id','left')
+      ->join('journeys', 'journeys.id', '=', 'users.journey_id','left')
+        ->where('users.user_type', '=', 3)
+        ->where('users.is_delete', '=', 0);
 
     if (!empty(Request::get('name'))) {
         $return = $return->where('name', 'like',

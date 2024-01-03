@@ -49,6 +49,7 @@ class StudentController extends Controller
         $student = new User;
         $student->name = trim($request->name);
         $student->last_name = trim($request->last_name);
+        $student->document_type = trim($request->document_type);
         $student->email = trim($request->email);
         $student->password = Hash::make($request->password);
         $student->admission_number = trim($request->admission_number);
@@ -135,7 +136,7 @@ public function update($id, Request $request)
 $student = User::getSingle($id);
 $student->name = trim($request->name);
 $student->last_name = trim($request->last_name);
-
+$student->document_type = trim($request->document_type);
 
 $student->admission_number = trim($request->admission_number);
 $student->roll_number = trim($request->roll_number);
