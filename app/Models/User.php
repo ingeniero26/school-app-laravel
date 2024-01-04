@@ -166,7 +166,7 @@ class User extends Authenticatable
         }
         if (!empty(Request::get('status'))) {
             $status =(Request::get('status')==100)?0 : 1;
-            $return = $return->whereDate('users.status', '=',$status);
+            $return = $return->where('users.status', '=',$status);
         }
         $return = $return->orderBy('id', 'desc')
             ->paginate(10);

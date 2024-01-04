@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar de Docente</h1>
+                        <h1>My Perfil</h1>
                     </div>
 
                 </div>
@@ -21,6 +21,7 @@
                 <div class="row">
                     <!-- left column -->
                     <div class="col-md-8">
+                        @include('_message')
                         <!-- general form elements -->
                         <div class="card card-primary">
 
@@ -97,12 +98,7 @@
                                                 value="{{ old('date_of_birth', $getTeacher->date_of_birth) }}"
                                                 placeholder="Fecha Matricula" name="date_of_birth">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label> Fecha Ingreso<span style="color: red">*</span> </label>
-                                            <input type="date" required class="form-control"
-                                                value="{{ old('admission_date', $getTeacher->admission_date) }}"
-                                                placeholder="Fecha Ingreso" name="admission_date">
-                                        </div>
+
 
                                         <div class="form-group col-md-6">
                                             <label> Teléfono<span style="color: red"></span> </label>
@@ -161,16 +157,7 @@
                                             <input type="text" class="form-control"
                                                 value="{{ old('eps', $getTeacher->eps) }}" placeholder="" name="eps">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label>Estado</label>
-                                            <select name="status" id="" class="form-control">
-                                                <option {{ $getTeacher->status == 0 ? 'selected' : '' }} value="0">
-                                                    Activo</option>
-                                                <option {{ $getTeacher->status == 1 ? 'selected' : '' }} value="1">
-                                                    Inactivo</option>
-                                            </select>
 
-                                        </div>
                                     </div>
                                     <hr>
                                     <h2 class="text-center"> <b>Datos de ingreso</b></h2>
@@ -181,12 +168,6 @@
                                         <div style="color:red;">
                                             {{ $errors->first('email') }}
                                         </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Si deseas puedes digitar una nueva clave">
                                     </div>
 
                                 </div>

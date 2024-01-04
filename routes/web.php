@@ -156,6 +156,11 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);
 
 
+    //perfil
+    Route::get('teacher/account', [UserController::class, 'MyAccount']);
+    Route::post('teacher/account', [UserController::class, 'UpdateMyAccount']);
+
+
 
 });
 
