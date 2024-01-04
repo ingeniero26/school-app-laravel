@@ -128,7 +128,7 @@
                          </div>
 
                          <div class="form-group col-md-6">
-                            <label> Fecha Matricula<span style="color: red">*</span> </label>
+                            <label> Fecha Nacimiento<span style="color: red">*</span> </label>
                             <input type="date" required class="form-control"
                             value="{{ old('date_of_birth') }}"
                             placeholder="Fecha Matricula" name="date_of_birth">

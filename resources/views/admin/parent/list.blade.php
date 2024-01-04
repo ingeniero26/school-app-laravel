@@ -12,7 +12,8 @@
           <h1>Listado de Padres de familia</h1>
         </div>
         <div class="col-sm-6" style="text-align:right">
-          <a href="{{ url('admin/parent/add') }}" class="btn btn-primary">Nuevo Estudiante</a>
+          <a href="{{ url('admin/parent/add') }}" 
+          class="btn btn-primary">Nuevo Padre/Madre</a>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -157,6 +158,7 @@
                                     <td>
                                         <a href="{{ url('admin/parent/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
                                         <a href="{{ url('admin/parent/delete/'.$value->id) }}" class="btn btn-danger">Eliminar</a>
+                                        <a href="{{ url('admin/parent/my-student/'.$value->id) }}" class="btn btn-success">Estudiante</a>
                                     </td>
 
                                 </tr>

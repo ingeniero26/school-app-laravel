@@ -145,8 +145,9 @@
                           <tr>
                             <th>#</th>
                             <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
+                            <th>Estudiante</th>
+                            <th>Padre /Madre</th>
+                            
                             <th>Tipo Documento</th>
                             <th>No Documento</th>
                             <th>Email</th>
@@ -174,8 +175,10 @@
                                         @endif
 
                                     </td>
-                                    <td>{{$value->name  }}</td>
-                                    <td>{{$value->last_name  }}</td>
+                                    <td>{{$value->name  }} {{$value->last_name  }}</td>
+                                    
+                                    <td>{{$value->parent_name  }} {{$value->parent_last_name  }}</td>
+                                    
                                     <td>{{$value->document_type  }}</td>
                                     <td>{{$value->roll_number  }}</td>
                                     <td>{{$value->email  }}</td>

@@ -76,6 +76,11 @@ Route::get('admin/parent/edit/{id}', [ParentController::class, 'edit']);
 Route::post('admin/parent/edit/{id}', [ParentController::class, 'update']);
 Route::get('admin/parent/delete/{id}', [ParentController::class, 'delete']);
 
+Route::get('admin/parent/my-student/{id}', [ParentController::class, 'myStudent']);
+//ruta para asignara el estdiante al padre de familia
+Route::get('admin/parent/assign_student_parent/{student_id}/{parent_id}', [ParentController::class, 'AssignStudentParent']);
+Route::get('admin/parent/assign_student_parent_delete/{student_id}', [ParentController::class, 'AssignStudentParentDelete']);
+
 
 
 //ruta para las clases
