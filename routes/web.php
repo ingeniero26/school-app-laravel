@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HeadquartersController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\TeacherController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,14 @@ Route::post('admin/student/add', [StudentController::class, 'insert']);
 Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
 Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
 Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
+// rutas para el docente
+
+Route::get('admin/teacher/list', [TeacherController::class, 'list']);
+Route::get('admin/teacher/add', [TeacherController::class, 'add']);
+Route::post('admin/teacher/add', [TeacherController::class, 'insert']);
+Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit']);
+Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
+Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete']);
 
 // rutas para el padre de familia
 

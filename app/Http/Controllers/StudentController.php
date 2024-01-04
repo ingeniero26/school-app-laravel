@@ -191,13 +191,13 @@ return redirect('admin/student/list')->with('success','Estudiante editado con ex
     }
 
    // eliminar admin
-   public function delete($id) {
+public function delete($id) {
     $student = User::getSingle($id);
     $student->is_delete = 1;
     $student->save();
     return redirect('admin/student/list')->with('success','Estudiante eliminado con exito');
 
-}
+    }
 
 
 
