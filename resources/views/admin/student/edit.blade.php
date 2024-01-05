@@ -193,6 +193,12 @@
                             placeholder="" name="blood_group">
                          </div>
                          <div class="form-group col-md-6">
+                            <label> Direccion<span style="color: red"></span> </label>
+                            <input type="text"  class="form-control"
+                            value="{{ old('address',$getStudent->address) }}"
+                            placeholder="" name="address">
+                         </div>
+                         <div class="form-group col-md-6">
                             <label> EPS<span style="color: red"></span> </label>
                             <input type="text"  class="form-control"
                             value="{{ old('eps',$getStudent->eps) }}"

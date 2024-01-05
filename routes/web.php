@@ -175,6 +175,10 @@ Route::group(['middleware' => 'student'], function () {
     Route::post('student/change_password', [UserController::class, 'update_change_password']);
 
 
+    //perfil estudiante
+    Route::get('student/account', [UserController::class, 'MyAccount']);
+    Route::post('student/account', [UserController::class, 'UpdateMyAccountStudent']);
+
 
 });
 
@@ -184,7 +188,7 @@ Route::group(['middleware' => 'parent'], function () {
     //     return view('admin.dashboard');
     // });
     Route::get('parent/dashboard', [DashboardController::class, 'dashboard']);
-    Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
+    //Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
 
     Route::get('parent/change_password', [UserController::class, 'change_password']);
     Route::post('parent/change_password', [UserController::class, 'update_change_password']);

@@ -147,7 +147,7 @@
                             <th>Foto</th>
                             <th>Estudiante</th>
                             <th>Padre /Madre</th>
-                            
+
                             <th>Tipo Documento</th>
                             <th>No Documento</th>
                             <th>Email</th>
@@ -159,6 +159,8 @@
                             <th>Genero</th>
                             <th>Fecha Nacimiento</th>
                             <th>Raza</th>
+                            <th>Direccion</th>
+                            <th>Telèfono</th>
 
                             <th>Creado</th>
                             <th>Acciones</th>
@@ -176,9 +178,9 @@
 
                                     </td>
                                     <td>{{$value->name  }} {{$value->last_name  }}</td>
-                                    
+
                                     <td>{{$value->parent_name  }} {{$value->parent_last_name  }}</td>
-                                    
+
                                     <td>{{$value->document_type  }}</td>
                                     <td>{{$value->roll_number  }}</td>
                                     <td>{{$value->email  }}</td>
@@ -188,7 +190,7 @@
                                           {{date('d-m-Y',strtotime($value->admission_date))}}
                                         @endif
                                     </td>
-                                    
+
                                     <td>{{$value->class_name  }}</td>
                                     <td>{{$value->headquarter_name  }}</td>
                                     <td>{{$value->journey_name  }}</td>
@@ -203,6 +205,8 @@
                                     </td>
 
                                     <td>{{$value->caste  }}</td>
+                                    <td>{{$value->address  }}</td>
+                                    <td>{{$value->mobile_number  }}</td>
                                     <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
                                     <td>
                                         <a href="{{ url('admin/student/edit/'.$value->id) }}" class="btn btn-warning">Editar</a>
