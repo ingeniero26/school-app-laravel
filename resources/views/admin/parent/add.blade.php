@@ -67,7 +67,7 @@
                             value="{{ old('roll_number') }}"
                             placeholder="Documento" name="roll_number">
                          </div>
-                      
+
 
                          <div class="form-group col-md-6">
                             <label> Genero<span style="color: red"></span> </label>
@@ -92,20 +92,32 @@
                             <input type="text"  class="form-control"
                             value="{{ old('address') }}"
                             placeholder="" name="address">
-                         </div> 
-                                           
+                         </div>
+
                          <div class="form-group col-md-6">
                             <label> Celular<span style="color: red"></span> </label>
                             <input type="text"  class="form-control"
                             value="{{ old('mobile_number') }}"
                             placeholder="" name="mobile_number">
-                         </div>               
+                         </div>
                          <div class="form-group col-md-6">
                             <label> Ocupacion<span style="color: red"></span> </label>
                             <input type="text"  class="form-control"
                             value="{{ old('occupation') }}"
                             placeholder="" name="occupation">
-                         </div>               
+                         </div>
+                         <div class="form-group col-md-6">
+                            <label> EPS<span style="color: red"></span> </label>
+                            <input type="text" class="form-control"
+                                value="{{ old('eps', $getParent->eps) }}" placeholder=""
+                                name="eps">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label> Grupo Sanguineo<span style="color: red"></span> </label>
+                            <input type="text" class="form-control"
+                                value="{{ old('blood_group', $getParent->blood_group) }}" placeholder=""
+                                name="blood_group">
+                        </div>
                         <div class="form-group col-md-6">
                             <label>Estado</label>
                             <select name="status" id="" class="form-control">

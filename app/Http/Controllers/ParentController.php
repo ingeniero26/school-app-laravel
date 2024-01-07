@@ -31,11 +31,11 @@ class ParentController extends Controller
         request()->validate([
             'email' => 'required|email|unique:users',
              'name' => 'max:250',
-            
+
              'roll_number' => 'max:50',
-           
+
              'mobile_number' => 'max:20|min:10'
-            
+
         ]);
 
         $parent = new User;
@@ -46,7 +46,7 @@ class ParentController extends Controller
         $parent->password = Hash::make($request->password);
         $parent->roll_number = trim($request->roll_number);
         $parent->gender = trim($request->gender);
-      
+
          if(!empty($request->file('profile_pic')))
             {
 
@@ -61,7 +61,8 @@ class ParentController extends Controller
         $parent->address = trim($request->address);
         $parent->mobile_number = trim($request->mobile_number);
         $parent->occupation = trim($request->occupation);
-             
+        $parent->eps = trim($request->eps);
+        $parent->blood_group = trim($request->blood_group);
         $parent->status = trim($request->status);
 
         $parent->user_type = 4;
@@ -96,11 +97,11 @@ class ParentController extends Controller
         request()->validate([
             'email' => 'required|email|unique:users,email,'.$id,
              'name' => 'max:250',
-            
+
              'roll_number' => 'max:50',
-           
+
              'mobile_number' => 'max:20|min:10'
-            
+
         ]);
 
         $parent = User::getSingle($id);
@@ -111,14 +112,14 @@ class ParentController extends Controller
         $parent->password = Hash::make($request->password);
         $parent->roll_number = trim($request->roll_number);
         $parent->gender = trim($request->gender);
-      
+
         if(!empty($request->file('profile_pic')))
         {
                  if(!empty($parent->getProfile()))
                     {
                         unlink('upload/profile/'.$parent->profile_pic);
                     }
-        
+
             $ext=$request->file('profile_pic')->getClientOriginalExtension();
             $file =$request->file('profile_pic');
             $randomStr=date('Ymdhis').Str::random(20);
@@ -129,10 +130,11 @@ class ParentController extends Controller
         $parent->address = trim($request->address);
         $parent->mobile_number = trim($request->mobile_number);
         $parent->occupation = trim($request->occupation);
-             
+        $parent->eps = trim($request->eps);
+        $parent->blood_group = trim($request->blood_group);
         $parent->status = trim($request->status);
 
-       
+
         $parent->save();
 
         return redirect('admin/parent/list')->with('success','Padre de familia editado al sistema');
@@ -144,7 +146,7 @@ class ParentController extends Controller
         $student->is_delete = 1;
         $student->save();
         return redirect('admin/parent/list')->with('success','Padre de familia eliminado con exito');
-    
+
     }
 
     //estudiante-padre
@@ -156,6 +158,16 @@ class ParentController extends Controller
         $data['getRecord'] = User::getMyStudent($id);
         $data['header_title'] = 'Padre de familia -Estudiante';
         return view('admin.parent.my_student',$data);
+    }
+
+    public function myStudentParent()
+    {
+       $id =Auth::user()->id;
+        // $data['getParent'] = User::getSingle($id);
+        // $data['parent_id'] =$id;
+        $data['getRecord'] = User::getMyStudent($id);
+        $data['header_title'] = 'Estudiante';
+        return view('parent.my_student',$data);
     }
 
     public function AssignStudentParent($student_id, $parent_id)
@@ -173,6 +185,6 @@ class ParentController extends Controller
         return redirect()->back()->with('success','Registro Eliminado');
     }
 
-    
+
 
 }

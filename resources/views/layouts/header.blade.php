@@ -234,6 +234,15 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('admin/account') }}"
+                 class="nav-link  @if(Request::segment(2)=='account') active @endif"">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                    Mi Perfil
+                  </p>
+                </a>
+              </li>
              @elseif (Auth::user()->user_type ==2)
              <li class="nav-header">Configuaciòn</li>
              <li class="nav-item">
@@ -320,13 +329,31 @@
                </a>
              </li>
              <li class="nav-item">
-               <a href="{{ url('admin/admin/list') }}" class="nav-link">
+               <a href="{{ url('parent/admin/list') }}" class="nav-link">
                  <i class="nav-icon far fa-user"></i>
                  <p>
                    Consultas
                  </p>
                </a>
              </li>
+             <li class="nav-item">
+                <a href="{{ url('parent/account') }}"
+                 class="nav-link  @if(Request::segment(2)=='account') active @endif"">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                    Mi Perfil
+                  </p>
+                </a>
+              </li>
+             <li class="nav-item">
+                <a href="{{ url('parent/my_student') }}"
+                 class="nav-link  @if(Request::segment(2)=='my_student') active @endif"">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                    Mi Estudiante
+                  </p>
+                </a>
+              </li>
              <li class="nav-item">
                 <a href="{{ url('parent/change_password') }}"
                  class="nav-link  @if(Request::segment(2)=='change_password') active @endif"">

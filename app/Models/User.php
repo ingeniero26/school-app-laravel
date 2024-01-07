@@ -284,7 +284,7 @@ class User extends Authenticatable
         $return = User::select('users.*', 'parent.name as parent_name',
             'class.name as class_name',
             'headquarters.name as headquarter_name', 'journeys.name as journey_name')
-            ->join('users as parent', 'parent.id', '=', 'users.parent_id', 'left')
+            ->join('users as parent', 'parent.id', '=', 'users.parent_id')
             ->join('class', 'class.id', '=', 'users.class_id', 'left')
             ->join('headquarters', 'headquarters.id', '=', 'users.headquarter_id', 'left')
             ->join('journeys', 'journeys.id', '=', 'users.journey_id', 'left')

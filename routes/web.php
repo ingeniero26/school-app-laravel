@@ -59,6 +59,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
 
+
+ //perfil
+ Route::get('admin/account', [UserController::class, 'MyAccount']);
+ Route::post('admin/account', [UserController::class, 'UpdateMyAccountAdmin']);
+
+
+
 // rutas para el estudiante
 
 Route::get('admin/student/list', [StudentController::class, 'list']);
@@ -192,6 +199,15 @@ Route::group(['middleware' => 'parent'], function () {
 
     Route::get('parent/change_password', [UserController::class, 'change_password']);
     Route::post('parent/change_password', [UserController::class, 'update_change_password']);
+
+
+   //perfil
+   Route::get('parent/account', [UserController::class, 'MyAccount']);
+   Route::post('parent/account', [UserController::class, 'UpdateMyAccountParent']);
+
+
+   Route::get('parent/my_student', [ParentController::class, 'myStudentParent']);
+
 
 });
 

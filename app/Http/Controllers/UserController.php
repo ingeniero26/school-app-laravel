@@ -18,19 +18,41 @@ class UserController extends Controller
     //PERFIL DOCENTE
     public function MyAccount()
     {
+        $data['getRecord'] = User::getSingle(Auth::user()->id);
         $data['getTeacher'] = User::getSingle(Auth::user()->id);
         $data['getStudent'] = User::getSingle(Auth::user()->id);
+        $data['getParent'] = User::getSingle(Auth::user()->id);
         $data['header_title'] = 'Cambiar Perfil';
 
-        if (Auth::user()->user_type == 2) {
+        if (Auth::user()->user_type == 1) {
+            return view('admin.my_account', $data);
+
+        }else if (Auth::user()->user_type == 2) {
             return view('teacher.my_account', $data);
 
         } elseif (Auth::user()->user_type == 3) {
             return view('student.my_account', $data);
 
+        } elseif (Auth::user()->user_type == 4) {
+            return view('parent.my_account', $data);
         }
     }
 
+
+    public function UpdateMyAccountAdmin(Request $request)
+    {
+        $id = Auth::user()->id;
+        request()->validate([
+            'email'=> 'required|email|unique:users,email,'.$id
+        ]);
+        $user = User::getSingle($id);
+        $user->name = trim($request->name);
+        $user->email = trim($request->email);
+
+        $user->save();
+        return redirect()->back()->with('success', 'Perfil editado al sistema');
+
+    }
     public function UpdateMyAccount(Request $request)
     {
         //valida si el correo ya esta en el sistema
@@ -66,6 +88,9 @@ class UserController extends Controller
 
         if (!empty($request->file('profile_pic'))) {
 
+            if (!empty($teacher->getProfile())) {
+                unlink('upload/profile/' . $teacher->profile_pic);
+            }
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(20);
@@ -117,6 +142,9 @@ class UserController extends Controller
         $student->occupation = trim($request->occupation);
 
         if (!empty($request->file('profile_pic'))) {
+            if (!empty($student->getProfile())) {
+                unlink('upload/profile/' . $student->profile_pic);
+            }
 
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
             $file = $request->file('profile_pic');
@@ -131,6 +159,49 @@ class UserController extends Controller
         $student->blood_group = trim($request->blood_group);
 
         $student->save();
+
+        return redirect()->back()->with('success', 'Perfil editado al sistema');
+    }
+
+    public function UpdateMyAccountParent(Request $request)
+    {
+        $id = Auth::user()->id;
+        request()->validate([
+            'email' => 'required|email|unique:users,email,' . $id,
+            'name' => 'max:250',
+
+            'roll_number' => 'max:50',
+
+            'mobile_number' => 'max:20|min:10',
+
+        ]);
+
+        $parent = User::getSingle($id);
+        $parent->name = trim($request->name);
+        $parent->last_name = trim($request->last_name);
+        $parent->document_type = trim($request->document_type);
+        $parent->email = trim($request->email);
+        $parent->roll_number = trim($request->roll_number);
+        $parent->gender = trim($request->gender);
+
+        if (!empty($request->file('profile_pic'))) {
+            if (!empty($parent->getProfile())) {
+                unlink('upload/profile/' . $parent->profile_pic);
+            }
+
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis') . Str::random(20);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/profile/', $filename);
+            $parent->profile_pic = $filename;
+        }
+        $parent->address = trim($request->address);
+        $parent->mobile_number = trim($request->mobile_number);
+        $parent->occupation = trim($request->occupation);
+        $parent->eps = trim($request->eps);
+        $parent->blood_group = trim($request->blood_group);
+        $parent->save();
 
         return redirect()->back()->with('success', 'Perfil editado al sistema');
     }

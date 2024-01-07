@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Editar de Administradores</h1>
+            <h1>Mi Perfil</h1>
           </div>
 
         </div>
@@ -21,6 +21,7 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-8">
+            @include('_message')
             <!-- general form elements -->
             <div class="card card-primary">
 
@@ -45,16 +46,7 @@
                         {{ $errors->first('email') }}
                        </div>
                   </div>
-                  <div class="form-group">
-                    <label >Password</label>
-                    <input type="text"
-                     class="form-control"
-                    name="password"
-                      placeholder="Password">
-                      <p>Digite un nueva clave, si desea actualizar</p>
-                  </div>
-
-                </div>
+               </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
