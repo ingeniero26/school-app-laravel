@@ -60,4 +60,18 @@ class ClassSubjectModel extends Model
     {
         return self::find($id);
     }
+// listado de asignaturas del estudiante
+    public static function MySubject($class_id)
+    {
+        return  self::select('class_subject.*', 'subject.name as subject_name', 'subject.type')
+        ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
+        ->join('class', 'class.id', '=', 'class_subject.class_id')
+        ->join('users', 'users.id', 'class_subject.created_by')
+        ->where('class_subject.class_id', '=', $class_id)
+        ->where('class_subject.is_delete', '=', 0)
+        ->where('class_subject.status', '=', 0)
+        ->orderBy('class_subject.id', 'desc')
+        ->get();
+
+    }
 }

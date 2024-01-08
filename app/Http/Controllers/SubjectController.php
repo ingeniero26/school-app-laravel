@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\SubjectModel;
+use App\Models\ClassSubjectModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,5 +76,23 @@ class SubjectController extends Controller
         $subject->save();
 
         return redirect('admin/subject/list')->with('success', 'Asignatura editado con exito');
+    }
+
+    //asignaturs del estudiante
+    public function MySubject()
+    {
+
+        $data['getRecord'] = ClassSubjectModel::MySubject(Auth::user()->class_id);
+        $data['header_title'] = 'Asignaturas List';
+        return view('student.my_subject', $data);
+    }
+    //asignaturs del estudiante DESDE EL PADRE
+    public function ParentStudentSubject($student_id)
+    {
+        $user = User::getSingle($student_id);
+        $data['getUser'] = $user;
+        $data['getRecord'] = ClassSubjectModel::MySubject($user->class_id);
+        $data['header_title'] = 'Asignaturas List';
+        return view('parent.my_student_subject', $data);
     }
 }

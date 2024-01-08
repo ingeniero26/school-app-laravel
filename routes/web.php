@@ -181,6 +181,9 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('student/change_password', [UserController::class, 'change_password']);
     Route::post('student/change_password', [UserController::class, 'update_change_password']);
 
+//asignaturas
+    Route::get('student/my_subject', [SubjectController::class, 'MySubject']);
+
 
     //perfil estudiante
     Route::get('student/account', [UserController::class, 'MyAccount']);
@@ -207,6 +210,9 @@ Route::group(['middleware' => 'parent'], function () {
 
 
    Route::get('parent/my_student', [ParentController::class, 'myStudentParent']);
+
+  // el padre puede ver las asignaturas de su hijo
+   Route::get('parent/my_student/subject/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
 
 
 });

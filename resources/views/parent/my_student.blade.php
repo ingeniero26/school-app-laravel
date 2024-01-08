@@ -54,6 +54,7 @@
                             <th>Direccion</th>
                             <th>Telèfono</th>
                             <th>Creado</th>
+                            <th>Accion</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -88,6 +89,10 @@
                                 <td>{{$value->caste  }}</td>
                                 <td>{{$value->address  }}</td>
                                 <td>{{$value->mobile_number  }}</td>
+                                <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
+                                <td>
+                                    <a href="{{ url('parent/my_stydent/subject/'.$value->id) }}" class="btn btn-success btn-sm">Asignaturas</a>
+                                </td>
                                </tr>
                             @endforeach
                        </tbody>
