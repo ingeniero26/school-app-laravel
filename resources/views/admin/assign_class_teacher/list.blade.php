@@ -8,7 +8,8 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1><i class="fas fa-american-sign-language-interpreting    "></i> Clases</h1>
+                        <h1>
+                            <i class="fas fa-american-sign-language-interpreting"></i> Programas-Docentes({{ $getRecord->total() }}) </h1>
                     </div>
                     <div class="col-sm-6" style="text-align:right">
                         <a href="{{ url('admin/assign_class_teacher/add') }}" class="btn btn-primary">Asignar Clases</a>
@@ -22,6 +23,74 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-default">
+                          <div class="card-header">
+                            <h3 class="card-title">Buscar</h3>
+                          </div>
+                          <!-- form start -->
+                          <form method="get" action="">
+
+                            <div class="card-body">
+                            <div class="row">
+                              <div class="form-group col-md-3">
+                                <label>Nombre Programa</label>
+                                <input type="text" class="form-control"
+                                value="{{ Request::get('class_name') }}"
+                                 placeholder="Programa" name="class_name">
+                              </div>
+                              <div class="form-group col-md-3">
+                                <label>Docente</label>
+                                <input type="text" class="form-control"
+                                value="{{ Request::get('subject_name') }}"
+                                 placeholder="Asignatura" name="subject_name">
+                              </div>
+
+                              <div class="form-group col-md-3">
+                                <label>Fecha</label>
+                                <input type="date"
+                                 name="date"
+                                class="form-control"
+                                value="{{ Request::get('date') }}"
+                                  >
+                              </div>
+                              <div class="form-group col-md-3">
+                                <label>Estado</label>
+                                <select name="status" id="" class="form-control">
+                                    <option value="">Seleccione estado</option>
+                                    <option {{ (Request::get('status')==100)? 'selected' : ''}} value="100">Activo</option>
+                                    <option {{ (Request::get('status')==1)? 'selected' : ''}} value="1">Inactivo</option>
+                                </select>
+                              </div>
+                              <div class="form-group col-md-3">
+                                <button type="submit"
+                                class="btn btn-primary"
+                                 style="margin-top: 30px">
+                                Buscar</button>
+                                <a href="{{ url('admin/assign_class_teacher/list') }}"
+                                class="btn btn-success"
+                                 style="margin-top: 30px">Limpiar</a>
+                              </div>
+                            </div>
+
+
+                            </div>
+                            <!-- /.card-body -->
+                          </form>
+                        </div>
+                        <!-- /.card -->
+
+                        <!-- general form elements -->
+
+
+
+                      </div>
+                      <!--/.col (left) -->
+                      <!-- right column -->
+
+                      <!--/.col (right) -->
+                    </div>
                     <!-- /.col -->
                     <div class="col-md-12">
                         <!-- /.row -->
