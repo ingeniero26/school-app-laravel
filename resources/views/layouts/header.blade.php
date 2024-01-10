@@ -216,6 +216,15 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ url('admin/assign_class_teacher/list') }}"
+                 class="nav-link  @if(Request::segment(2)=='assign_class_teacher') active @endif"">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>
+                     Modulos -Docentes
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ url('admin/headquarter/list') }}"
                  class="nav-link  @if(Request::segment(2)=='headquarter') active @endif"">
                   <i class="nav-icon far fa-user"></i>

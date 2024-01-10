@@ -13,7 +13,8 @@ class ClassSubjectModel extends Model
     protected $table = 'class_subject';
     public static function getAssignList()
     {
-        $return = self::select('class_subject.*', 'class.name as class_name', 'subject.name as subject_name', 'users.name as created_by_name')
+        $return = self::select('class_subject.*', 'class.name as class_name',
+         'subject.name as subject_name', 'users.name as created_by_name')
             ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
             ->join('class', 'class.id', '=', 'class_subject.class_id')
             ->join('users', 'users.id', 'class_subject.created_by');

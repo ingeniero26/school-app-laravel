@@ -42,10 +42,10 @@ class TeacherController extends Controller
         $teacher->name = trim($request->name);
         $teacher->last_name = trim($request->last_name);
         $teacher->document_type = trim($request->document_type);
+        $teacher->roll_number = trim($request->roll_number);
+
         $teacher->email = trim($request->email);
         $teacher->password = Hash::make($request->password);
-        $teacher->admission_number = trim($request->admission_number);
-        $teacher->roll_number = trim($request->roll_number);
 
         $teacher->gender = trim($request->gender);
         if(!empty($request->date_of_birth))

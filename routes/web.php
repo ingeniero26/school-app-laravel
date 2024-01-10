@@ -1,19 +1,18 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\JourneysController;
-use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\HeadquartersController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\JourneysController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
-
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,45 +58,40 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
 
-
- //perfil
- Route::get('admin/account', [UserController::class, 'MyAccount']);
- Route::post('admin/account', [UserController::class, 'UpdateMyAccountAdmin']);
-
-
+    //perfil
+    Route::get('admin/account', [UserController::class, 'MyAccount']);
+    Route::post('admin/account', [UserController::class, 'UpdateMyAccountAdmin']);
 
 // rutas para el estudiante
 
-Route::get('admin/student/list', [StudentController::class, 'list']);
-Route::get('admin/student/add', [StudentController::class, 'add']);
-Route::post('admin/student/add', [StudentController::class, 'insert']);
-Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
-Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
-Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
+    Route::get('admin/student/list', [StudentController::class, 'list']);
+    Route::get('admin/student/add', [StudentController::class, 'add']);
+    Route::post('admin/student/add', [StudentController::class, 'insert']);
+    Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
+    Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
+    Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
 // rutas para el docente
 
-Route::get('admin/teacher/list', [TeacherController::class, 'list']);
-Route::get('admin/teacher/add', [TeacherController::class, 'add']);
-Route::post('admin/teacher/add', [TeacherController::class, 'insert']);
-Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit']);
-Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
-Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete']);
+    Route::get('admin/teacher/list', [TeacherController::class, 'list']);
+    Route::get('admin/teacher/add', [TeacherController::class, 'add']);
+    Route::post('admin/teacher/add', [TeacherController::class, 'insert']);
+    Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit']);
+    Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
+    Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete']);
 
 // rutas para el padre de familia
 
-Route::get('admin/parent/list', [ParentController::class, 'list']);
-Route::get('admin/parent/add', [ParentController::class, 'add']);
-Route::post('admin/parent/add', [ParentController::class, 'insert']);
-Route::get('admin/parent/edit/{id}', [ParentController::class, 'edit']);
-Route::post('admin/parent/edit/{id}', [ParentController::class, 'update']);
-Route::get('admin/parent/delete/{id}', [ParentController::class, 'delete']);
+    Route::get('admin/parent/list', [ParentController::class, 'list']);
+    Route::get('admin/parent/add', [ParentController::class, 'add']);
+    Route::post('admin/parent/add', [ParentController::class, 'insert']);
+    Route::get('admin/parent/edit/{id}', [ParentController::class, 'edit']);
+    Route::post('admin/parent/edit/{id}', [ParentController::class, 'update']);
+    Route::get('admin/parent/delete/{id}', [ParentController::class, 'delete']);
 
-Route::get('admin/parent/my-student/{id}', [ParentController::class, 'myStudent']);
+    Route::get('admin/parent/my-student/{id}', [ParentController::class, 'myStudent']);
 //ruta para asignara el estdiante al padre de familia
-Route::get('admin/parent/assign_student_parent/{student_id}/{parent_id}', [ParentController::class, 'AssignStudentParent']);
-Route::get('admin/parent/assign_student_parent_delete/{student_id}', [ParentController::class, 'AssignStudentParentDelete']);
-
-
+    Route::get('admin/parent/assign_student_parent/{student_id}/{parent_id}', [ParentController::class, 'AssignStudentParent']);
+    Route::get('admin/parent/assign_student_parent_delete/{student_id}', [ParentController::class, 'AssignStudentParentDelete']);
 
 //ruta para las clases
     Route::get('admin/class/list', [ClassController::class, 'list']);
@@ -131,11 +125,9 @@ Route::get('admin/parent/assign_student_parent_delete/{student_id}', [ParentCont
     Route::post('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'update']);
     Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete']);
 
-
     //editar un solor registro
     Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
-
 
     Route::get('admin/change_password', [UserController::class, 'change_password']);
     Route::post('admin/change_password', [UserController::class, 'update_change_password']);
@@ -148,8 +140,18 @@ Route::get('admin/parent/assign_student_parent_delete/{student_id}', [ParentCont
     Route::post('admin/headquarter/edit/{id}', [HeadquartersController::class, 'update']);
     Route::get('admin/headquarter/delete/{id}', [HeadquartersController::class, 'delete']);
 
+    // asignar asignaturas / materias programas al docente
 
+    Route::get('admin/assign_class_teacher/list', [AssignClassTeacherController::class, 'list']);
+    Route::get('admin/assign_class_teacher/add', [AssignClassTeacherController::class, 'add']);
+    Route::post('admin/assign_class_teacher/add', [AssignClassTeacherController::class, 'insert']);
+    Route::get('admin/assign_class_teacher/edit/{id}', [AssignClassTeacherController::class, 'edit']);
+    Route::post('admin/assign_class_teacher/edit/{id}', [AssignClassTeacherController::class, 'update']);
+    Route::get('admin/assign_class_teacher/delete/{id}', [AssignClassTeacherController::class, 'delete']);
 
+    //editar un solor registro
+    Route::get('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'edit_single']);
+    Route::post('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
 });
 
 //docente
@@ -162,12 +164,9 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/change_password', [UserController::class, 'change_password']);
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);
 
-
     //perfil
     Route::get('teacher/account', [UserController::class, 'MyAccount']);
     Route::post('teacher/account', [UserController::class, 'UpdateMyAccount']);
-
-
 
 });
 
@@ -184,11 +183,9 @@ Route::group(['middleware' => 'student'], function () {
 //asignaturas
     Route::get('student/my_subject', [SubjectController::class, 'MySubject']);
 
-
     //perfil estudiante
     Route::get('student/account', [UserController::class, 'MyAccount']);
     Route::post('student/account', [UserController::class, 'UpdateMyAccountStudent']);
-
 
 });
 
@@ -203,17 +200,14 @@ Route::group(['middleware' => 'parent'], function () {
     Route::get('parent/change_password', [UserController::class, 'change_password']);
     Route::post('parent/change_password', [UserController::class, 'update_change_password']);
 
+    //perfil
+    Route::get('parent/account', [UserController::class, 'MyAccount']);
+    Route::post('parent/account', [UserController::class, 'UpdateMyAccountParent']);
 
-   //perfil
-   Route::get('parent/account', [UserController::class, 'MyAccount']);
-   Route::post('parent/account', [UserController::class, 'UpdateMyAccountParent']);
+    Route::get('parent/my_student', [ParentController::class, 'myStudentParent']);
 
-
-   Route::get('parent/my_student', [ParentController::class, 'myStudentParent']);
-
-  // el padre puede ver las asignaturas de su hijo
-   Route::get('parent/my_student/subject/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
-
+    // el padre puede ver las asignaturas de su hijo
+    Route::get('parent/my_student/subject/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
 
 });
 
@@ -226,6 +220,5 @@ Route::group(['middleware' => 'schooll'], function () {
 
     Route::get('parent/change_password', [UserController::class, 'change_password']);
     Route::post('parent/change_password', [UserController::class, 'update_change_password']);
-
 
 });
