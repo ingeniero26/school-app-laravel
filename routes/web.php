@@ -170,6 +170,9 @@ Route::group(['middleware' => 'teacher'], function () {
 
     Route::get('teacher/my_class_subject', [AssignClassTeacherController::class, 'MyClassSubject']);
 
+    //listado de estudiantes
+    Route::get('teacher/my_student', [StudentController::class, 'MyStudent']);
+
 });
 
 //alumnos

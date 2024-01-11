@@ -165,13 +165,38 @@ class User extends Authenticatable
                 Request::get('admission_date'));
         }
         if (!empty(Request::get('status'))) {
-            $status =(Request::get('status')==100)?0 : 1;
-            $return = $return->where('users.status', '=',$status);
+            $status = (Request::get('status') == 100) ? 0 : 1;
+            $return = $return->where('users.status', '=', $status);
         }
         $return = $return->orderBy('id', 'desc')
             ->paginate(10);
         return $return;
     }
+
+    public static function getTeacherStudent($teacher_id)
+    {
+        $return = User::select('users.*',
+            'class.name as class_name',
+            'headquarters.name as headquarter_name',
+            'journeys.name as journey_name')
+
+            ->join('class', 'class.id', '=', 'users.class_id', 'left')
+            ->join('assign_class_teacher', 'assign_class_teacher.class_id', '=', 'class.id')
+            ->join('headquarters', 'headquarters.id', '=', 'users.headquarter_id', 'left')
+            ->join('journeys', 'journeys.id', '=', 'users.journey_id', 'left')
+        // ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
+            ->where('assign_class_teacher.teacher_id', '=', $teacher_id)
+            ->where('assign_class_teacher.status', '=', 0)
+            ->where('assign_class_teacher.is_delete', '=', 0)
+            ->where('users.user_type', '=', 3)
+            ->where('users.is_delete', '=', 0);
+        $return = $return->orderBy('id', 'desc')
+            ->groupBy('users.id')
+            ->paginate(10);
+        return $return;
+
+    }
+
     public static function getTeacherClass()
     {
         $return = User::select('users.*',
