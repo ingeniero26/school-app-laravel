@@ -49,19 +49,7 @@
                                           @endforeach
                                     </div>
 
-                                      <div class="form-group">
-                                        <label>Sede</label>
 
-                                        <select name="headquarter_id" id="" class="form-control" required>
-                                            <option value="">Seleccione una sede</option>
-                                            @foreach ($getHeadquater as $headquater)
-                                                <option value="{{ $headquater->id }}">{{ $headquater->name }}</option>
-                                            @endforeach
-                                        </select>
-
-
-
-                                    </div>
                                     <div class="form-group">
                                         <label>Estado</label>
                                         <select name="status" id="" class="form-control">

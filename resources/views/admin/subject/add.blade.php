@@ -43,6 +43,18 @@
                     </select>
 
                   </div>
+                  <div class="form-group">
+                    <label>Semestre</label>
+                    <select name="semester" id=""
+                    class="form-control" required>
+                        <option value="0">Seleccione un semestre</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                    </select>
+
+                  </div>
 
 
                   <div class="form-group">

@@ -12,7 +12,8 @@
           <h1>Listado Materias</h1>
         </div>
         <div class="col-sm-6" style="text-align:right">
-          <a href="{{ url('admin/subject/add') }}" class="btn btn-primary">Nueva Jornada</a>
+          <a href="{{ url('admin/subject/add') }}"
+           class="btn btn-primary">Nueva Asignatura</a>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -101,6 +102,7 @@
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Tipo</th>
+                    <th>Semestre</th>
                     <th>Estado</th>
                     <th>Usuario</th>
                     <th>Creado</th>
@@ -113,6 +115,7 @@
                            <td>{{$value->id  }}</td>
                            <td>{{$value->name  }}</td>
                            <td>{{$value->type  }}</td>
+                           <td>{{$value->semester  }}</td>
                            <td>
                             @if($value->status==0)
                             Activo

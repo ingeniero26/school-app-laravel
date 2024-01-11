@@ -50,6 +50,17 @@
                     </select>
 
                   </div>
+                  <div class="form-group">
+                    <label>Sede</label>
+                    <select name="headquarter_id" id=""
+                    class="form-control" required>
+                        <option value="">Seleccione una clase</option>
+                       @foreach($getHeadquater as $headquarter)
+                           <option {{ ($getRecord->headquarter_id==$headquarter->id) ? 'selected':'' }} value="{{ $headquarter->id }}">{{ $headquarter->name }}</option>
+                       @endforeach
+                    </select>
+
+                </div>
 
                   {{--  <div class="form-group">
                     <label>Nombre Asignatura</label>

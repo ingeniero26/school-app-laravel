@@ -108,7 +108,6 @@
                                             <th>#</th>
                                             <th>Programa</th>
                                             <th>Docente</th>
-                                            <th>Sede</th>
                                             <th>Usuario</th>
                                             <th>Estado</th>
                                             <th>Creado</th>
@@ -121,7 +120,7 @@
                                                 <td>{{ $value->id }}</td>
                                                 <td>{{ $value->class_name }}</td>
                                                 <td>{{ $value->teacher_name }} {{ $value->last_name }}</td>
-                                                <td>{{ $value->headquarter }}</td>
+
                                                 <td>{{ $value->created_by_name }}</td>
 
                                                 <td>
@@ -147,7 +146,7 @@
                                     </tbody>
                                 </table>
                                 <div style="padding:10px; float:right;">
-                                    {{--  {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}  --}}
+                                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                                 </div>
                             </div>
                             <!-- /.card-body -->

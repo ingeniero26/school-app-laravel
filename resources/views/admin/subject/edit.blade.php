@@ -53,6 +53,16 @@
                     </select>
 
                   </div>
+                  <div class="form-group">
+                    <label>Estado</label>
+                    <select name="semester" id="" class="form-control">
+                        <option {{ ($getRecord->semester == 'I')? 'selected' : ''}} value="I">I</option>
+                        <option {{ ($getRecord->semester == 'II')? 'selected' : '' }} value="II">II</option>
+                        <option {{ ($getRecord->semester == 'III')? 'selected' : '' }} value="III">III</option>
+                        <option {{ ($getRecord->semester == 'IV')? 'selected' : '' }} value="IV">IV</option>
+                    </select>
+
+                  </div>
 
                 </div>
                 <!-- /.card-body -->

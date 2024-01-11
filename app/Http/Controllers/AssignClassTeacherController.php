@@ -21,7 +21,6 @@ class AssignClassTeacherController extends Controller
     public function add()
     {
         $data['getClassSubject'] = ClassModel::getClassSubject();
-        $data['getHeadquater'] = HeadquartersModel::getheadquartersList();
         $data['getTeacher'] = User::getTeacherClass();
         $data['header_title'] = 'Add  Class';
         return view('admin.assign_class_teacher.add', $data);
@@ -32,7 +31,7 @@ class AssignClassTeacherController extends Controller
         //dd($request->all());
         if (!empty($request->teacher_id)) {
             foreach ($request->teacher_id as $teacher_id) {
-                $getAlreadyFirst = AssignClassTeacherModel::getAlreadyFirst($request->class_id, $request->headquarter_id, $teacher_id);
+                $getAlreadyFirst = AssignClassTeacherModel::getAlreadyFirst($request->class_id, $request->teacher_id);
                 if (!empty($getAlreadyFirst)) {
 
                     $getAlreadyFirst->status = trim($request->status);
@@ -40,7 +39,6 @@ class AssignClassTeacherController extends Controller
                 } else {
                     $subject_class_teacher = new AssignClassTeacherModel;
                     $subject_class_teacher->class_id = $request->class_id;
-                    $subject_class_teacher->headquarter_id = $request->headquarter_id;
                     $subject_class_teacher->teacher_id = $teacher_id;
                     $subject_class_teacher->status = trim($request->status);
                     $subject_class_teacher->created_by = Auth::user()->id;
@@ -63,7 +61,6 @@ class AssignClassTeacherController extends Controller
             $data['getRecord'] = $getRecord;
             $data['getAssignTeacherID'] = AssignClassTeacherModel::getAssignTeacherID($getRecord->teacher_id);
             $data['getClassSubject'] = ClassModel::getClassSubject();
-            $data['getHeadquater'] = HeadquartersModel::getheadquartersList();
             $data['getTeacher'] = User::getTeacherClass();
             $data['header_title'] = 'Editar Asignacion';
             return view('admin.assign_class_teacher.edit', $data);
@@ -146,6 +143,15 @@ class AssignClassTeacherController extends Controller
 
         }
 
+    }
+
+    // DOCENTE
+    public function MyClassSubject()
+    {
+
+        $data['getRecord'] =AssignClassTeacherModel::getMyClassSubject(Auth::user()->id);
+        $data['header_title'] = 'Programas -Modulos Asignados';
+        return view('teacher.my_class_subject', $data);
     }
 
 }

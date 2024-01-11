@@ -33,6 +33,7 @@ class SubjectController extends Controller
         $subject = new SubjectModel;
         $subject->name = trim($request->name);
         $subject->type = trim($request->type);
+        $subject->semester = trim($request->semester);
         $subject->status = trim($request->status);
         $subject->created_by = Auth::user()->id;
 
@@ -71,6 +72,7 @@ class SubjectController extends Controller
         $subject = SubjectModel::getSubject($id);
         $subject->name = trim($request->name);
         $subject->type = trim($request->type);
+        $subject->semester = trim($request->semester);
         $subject->status = trim($request->status);
 
         $subject->save();

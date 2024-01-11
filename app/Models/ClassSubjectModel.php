@@ -13,10 +13,13 @@ class ClassSubjectModel extends Model
     protected $table = 'class_subject';
     public static function getAssignList()
     {
-        $return = self::select('class_subject.*', 'class.name as class_name',
-         'subject.name as subject_name', 'users.name as created_by_name')
+        $return = self::select('class_subject.*',
+         'class.name as class_name',
+         'headquarters.name as headquarter_name',
+            'subject.name as subject_name', 'users.name as created_by_name')
             ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
             ->join('class', 'class.id', '=', 'class_subject.class_id')
+            ->join('headquarters', 'headquarters.id', '=', 'class_subject.headquarter_id')
             ->join('users', 'users.id', 'class_subject.created_by');
         if (!empty(Request::get('class_name'))) {
             $return = $return->where('class.name', 'like',
@@ -37,10 +40,11 @@ class ClassSubjectModel extends Model
         return $return;
     }
 
-    public static function getAlreadyFirst($class_id, $subject_id)
+    public static function getAlreadyFirst($class_id, $subject_id,$headquarter_id)
     {
         return self::where('class_id', '=', $class_id)
-                   ->where('subject_id', '=', $subject_id)->first();
+        ->where('headquarter_id', '=', $headquarter_id)
+            ->where('subject_id', '=', $subject_id)->first();
     }
 
     // mostrar datos del admin por ID
@@ -64,15 +68,15 @@ class ClassSubjectModel extends Model
 // listado de asignaturas del estudiante
     public static function MySubject($class_id)
     {
-        return  self::select('class_subject.*', 'subject.name as subject_name', 'subject.type')
-        ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
-        ->join('class', 'class.id', '=', 'class_subject.class_id')
-        ->join('users', 'users.id', 'class_subject.created_by')
-        ->where('class_subject.class_id', '=', $class_id)
-        ->where('class_subject.is_delete', '=', 0)
-        ->where('class_subject.status', '=', 0)
-        ->orderBy('class_subject.id', 'desc')
-        ->get();
+        return self::select('class_subject.*', 'subject.name as subject_name', 'subject.type')
+            ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
+            ->join('class', 'class.id', '=', 'class_subject.class_id')
+            ->join('users', 'users.id', 'class_subject.created_by')
+            ->where('class_subject.class_id', '=', $class_id)
+            ->where('class_subject.is_delete', '=', 0)
+            ->where('class_subject.status', '=', 0)
+            ->orderBy('class_subject.id', 'desc')
+            ->get();
 
     }
 }

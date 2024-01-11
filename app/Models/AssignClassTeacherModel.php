@@ -11,10 +11,10 @@ class AssignClassTeacherModel extends Model
     use HasFactory;
     protected $table = 'assign_class_teacher';
 
-    public static function getAlreadyFirst($class_id, $headquarter_id, $teacher_id)
+    public static function getAlreadyFirst($class_id, $teacher_id)
     {
         return self::where('class_id', '=', $class_id)
-            ->where('headquarter_id', '=', $headquarter_id)
+
             ->where('teacher_id', '=', $teacher_id)->first();
     }
 
@@ -23,14 +23,13 @@ class AssignClassTeacherModel extends Model
     {
         $return = self::select('assign_class_teacher.*',
             'class.name as class_name',
-            'headquarters.name as headquarter ',
             'teacher.name as teacher_name', 'teacher.last_name as last_name',
             'users.name as created_by_name')
             ->join('users as teacher', 'teacher.id', 'assign_class_teacher.teacher_id')
             ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
         // ->join('headquarters', 'headquarters.id', '=', 'users.headquarter_id', 'left')
 
-            ->join('headquarters', 'headquarters.id', '=', 'assign_class_teacher.headquarter_id')
+          //  ->join('headquarters', 'headquarters.id', '=', 'assign_class_teacher.headquarter_id')
             ->join('users', 'users.id', 'assign_class_teacher.created_by');
         if (!empty(Request::get('class_name'))) {
             $return = $return->where('class.name', 'like',
@@ -70,6 +69,23 @@ class AssignClassTeacherModel extends Model
     {
         return self::where('class_id', '=', $class_id)
             ->delete();
+    }
+
+    public static function getMyClassSubject($teacher_id)
+    {
+        return  AssignClassTeacherModel::select('assign_class_teacher.*',
+        'class.name as class_name',
+        'headquarters.name as headquarter_name',
+        'subject.name as subject_name',
+        'subject.type as type','subject.semester as semester',)
+        ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
+        ->join('class_subject', 'class_subject.class_id', '=', 'class.id')
+        ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
+        ->join('headquarters', 'headquarters.id', '=', 'class_subject.headquarter_id')
+        ->where('assign_class_teacher.is_delete', '=', 0)
+        ->where('assign_class_teacher.status', '=', 0)
+        ->where('assign_class_teacher.teacher_id', '=', $teacher_id)
+        ->get();
     }
 
 }

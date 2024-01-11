@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassModel;
 use App\Models\ClassSubjectModel;
 use App\Models\SubjectModel;
+use App\Models\HeadquartersModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,8 @@ class ClassSubjectController extends Controller
     {
         $data['getClassSubject'] = ClassModel::getClassSubject();
         $data['getSubjectClass'] = SubjectModel::getSubjectClass();
+        $data['getHeadquater'] = HeadquartersModel::getheadquartersList();
+
         $data['header_title'] = 'Add  Class';
         return view('admin.assign_subject.add', $data);
     }
@@ -30,7 +33,7 @@ class ClassSubjectController extends Controller
         //dd($request->all());
         if (!empty($request->subject_id)) {
             foreach ($request->subject_id as $subject_id) {
-                $getAlreadyFirst = ClassSubjectModel::getAlreadyFirst($request->class_id, $subject_id);
+                $getAlreadyFirst = ClassSubjectModel::getAlreadyFirst($request->class_id, $subject_id,$request->headquarter_id);
                 if (!empty($getAlreadyFirst)) {
 
                     $getAlreadyFirst->status = trim($request->status);
@@ -39,6 +42,8 @@ class ClassSubjectController extends Controller
                     $subject = new ClassSubjectModel;
                     $subject->class_id = $request->class_id;
                     $subject->subject_id = $subject_id;
+                    $subject->headquarter_id = $request->headquarter_id;
+
                     $subject->status = trim($request->status);
                     $subject->created_by = Auth::user()->id;
 
@@ -61,6 +66,8 @@ class ClassSubjectController extends Controller
             $data['getAssignSubjectID'] = ClassSubjectModel::getAssignSubjectID($getRecord->class_id);
             $data['getClassSubject'] = ClassModel::getClassSubject();
             $data['getSubjectClass'] = SubjectModel::getSubjectClass();
+            $data['getHeadquater'] = HeadquartersModel::getheadquartersList();
+
             $data['header_title'] = 'Editar Asignacion';
             return view('admin.assign_subject.edit', $data);
         } else {
@@ -74,7 +81,7 @@ class ClassSubjectController extends Controller
         ClassSubjectModel::deleteSubject($request->class_id);
         if (!empty($request->subject_id)) {
             foreach ($request->subject_id as $subject_id) {
-                $getAlreadyFirst = ClassSubjectModel::getAlreadyFirst($request->class_id, $subject_id);
+                $getAlreadyFirst = ClassSubjectModel::getAlreadyFirst($request->class_id, $subject_id,$request->headquarter_id);
                 if (!empty($getAlreadyFirst)) {
 
                     $getAlreadyFirst->status = trim($request->status);
@@ -83,6 +90,8 @@ class ClassSubjectController extends Controller
                     $subject = new ClassSubjectModel;
                     $subject->class_id = $request->class_id;
                     $subject->subject_id = $subject_id;
+                    $subject->headquarter_id = $request->headquarter_id;
+
                     $subject->status = trim($request->status);
                     $subject->created_by = Auth::user()->id;
 
@@ -114,6 +123,8 @@ class ClassSubjectController extends Controller
             $data['getRecord'] = $getRecord;
             $data['getClassSubject'] = ClassModel::getClassSubject();
             $data['getSubjectClass'] = SubjectModel::getSubjectClass();
+            $data['getHeadquater'] = HeadquartersModel::getheadquartersList();
+
             $data['header_title'] = 'Editar Asignacion';
             return view('admin.assign_subject.edit_single', $data);
         } else {
@@ -124,7 +135,7 @@ class ClassSubjectController extends Controller
     //editar un solo registro
     public function update_single($id, Request $request)
     {
-        $getAlreadyFirst = ClassSubjectModel::getAlreadyFirst($request->class_id, $request->subject_id);
+        $getAlreadyFirst = ClassSubjectModel::getAlreadyFirst($request->class_id, $request->subject_id,$request->headquarter_id);
             if (!empty($getAlreadyFirst)) {
 
                     $getAlreadyFirst->status = trim($request->status);
@@ -135,6 +146,8 @@ class ClassSubjectController extends Controller
                     $subject_asiign =ClassSubjectModel::getAssingClass($id);
                     $subject_asiign->class_id = $request->class_id;
                     $subject_asiign->subject_id = $request->subject_id;
+                    $subject_asiign->headquarter_id = $request->headquarter_id;
+
                     $subject_asiign->status = $request->status;
                     $subject_asiign->save();
 

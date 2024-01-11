@@ -108,6 +108,7 @@
                     <th>#</th>
                     <th>Programa</th>
                     <th>Materia</th>
+                    <th>Sede</th>
 
                     <th>Usuario</th>
                     <th>Estado</th>
@@ -121,6 +122,7 @@
                            <td>{{$value->id  }}</td>
                            <td>{{$value->class_name  }}</td>
                            <td>{{$value->subject_name  }}</td>
+                           <td>{{$value->headquarter_name  }}</td>
                            <td>{{$value->created_by_name  }}</td>
 
                            <td>
