@@ -5,6 +5,7 @@ use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
+use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HeadquartersController;
 use App\Http\Controllers\JourneysController;
@@ -152,6 +153,12 @@ Route::group(['middleware' => 'admin'], function () {
     //editar un solor registro
     Route::get('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'edit_single']);
     Route::post('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
+
+// horario de clases
+    Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
+    Route::get('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
+    Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
+
 });
 
 //docente

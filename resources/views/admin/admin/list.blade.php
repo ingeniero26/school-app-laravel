@@ -95,7 +95,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-              <table class="table table-striped">
+              <table id="example2" class="table  table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -138,5 +138,29 @@
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
+  <script>
+
+</script>
 </div>
+@endsection
+
+@section('script')
+
+ $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
 @endsection
