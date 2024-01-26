@@ -41,7 +41,7 @@
                          @foreach($getRecord as $value)
                        <tr>
                            <td>{{$value->subject_name  }}</td>
-                           <td>{{$value->type  }}</td>
+                           <td>{{$value->subject_type  }}</td>
 
                        </tr>
                     @endforeach

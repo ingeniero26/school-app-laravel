@@ -366,12 +366,12 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url('student/change_password') }}"
-                            class="nav-link  @if (Request::segment(2) == 'change_password') active @endif"">
+                      <li class="nav-item">
+                        <a href="{{ url('student/my_timetable') }}"
+                            class="nav-link  @if (Request::segment(2) == 'my_timetable') active @endif"">
                             <i class="nav-icon far fa-user"></i>
                             <p>
-                                Cambiar Clave
+                                Mi Horario
                             </p>
                         </a>
                     </li>
@@ -441,7 +441,7 @@
                         </a>
                     </li>
                 @endif
- <li class="nav-item">
+                <li class="nav-item">
                         <a href="{{ url('admin/change_password') }}"
                             class="nav-link  @if (Request::segment(2) == 'change_password') active @endif"">
                             <i class="nav-icon far fa-user"></i>

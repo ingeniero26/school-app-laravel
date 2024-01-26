@@ -199,6 +199,10 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('student/account', [UserController::class, 'MyAccount']);
     Route::post('student/account', [UserController::class, 'UpdateMyAccountStudent']);
 
+    //horario
+
+    Route::get('student/my_timetable', [ClassTimetableController::class, 'MyTimetable']);
+
 });
 
 //padre de familia
