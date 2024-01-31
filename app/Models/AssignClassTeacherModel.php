@@ -29,7 +29,7 @@ class AssignClassTeacherModel extends Model
             ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
         // ->join('headquarters', 'headquarters.id', '=', 'users.headquarter_id', 'left')
 
-          //  ->join('headquarters', 'headquarters.id', '=', 'assign_class_teacher.headquarter_id')
+        //  ->join('headquarters', 'headquarters.id', '=', 'assign_class_teacher.headquarter_id')
             ->join('users', 'users.id', 'assign_class_teacher.created_by');
         if (!empty(Request::get('class_name'))) {
             $return = $return->where('class.name', 'like',
@@ -73,19 +73,27 @@ class AssignClassTeacherModel extends Model
 
     public static function getMyClassSubject($teacher_id)
     {
-        return  AssignClassTeacherModel::select('assign_class_teacher.*',
-        'class.name as class_name',
-        'headquarters.name as headquarter_name',
-        'subject.name as subject_name',
-        'subject.type as type','subject.semester as semester',)
-        ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
-        ->join('class_subject', 'class_subject.class_id', '=', 'class.id')
-        ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
-        ->join('headquarters', 'headquarters.id', '=', 'class_subject.headquarter_id')
-        ->where('assign_class_teacher.is_delete', '=', 0)
-        ->where('assign_class_teacher.status', '=', 0)
-        ->where('assign_class_teacher.teacher_id', '=', $teacher_id)
-        ->get();
+        return AssignClassTeacherModel::select('assign_class_teacher.*',
+            'class.name as class_name',
+            'headquarters.name as headquarter_name',
+            'subject.name as subject_name',
+            'subject.type as type', 'subject.semester as semester',
+            'class.id as class_id', 'subject.id as subject_id')
+            ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
+            ->join('class_subject', 'class_subject.class_id', '=', 'class.id')
+            ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
+            ->join('headquarters', 'headquarters.id', '=', 'class_subject.headquarter_id')
+            ->where('assign_class_teacher.is_delete', '=', 0)
+            ->where('assign_class_teacher.status', '=', 0)
+            ->where('assign_class_teacher.teacher_id', '=', $teacher_id)
+            ->get();
+    }
+
+    public static function getMyTimeTable($class_id, $subject_id)
+    {
+        return date('l');
+        // $getWeek = WeekModel::getWeekUsingName(date('l'));
+        // return ClassSubjectTimetableModel::getRecordClassSubject($class_id, $subject_id, $getWeek->id);
     }
 
 }

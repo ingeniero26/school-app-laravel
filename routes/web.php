@@ -176,6 +176,7 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::post('teacher/account', [UserController::class, 'UpdateMyAccount']);
 
     Route::get('teacher/my_class_subject', [AssignClassTeacherController::class, 'MyClassSubject']);
+    Route::get('teacher/my_class_subject/class_timetable/{class_id}/{subject_id}', [ClassTimetableController::class, 'MyTimetableTeacher']);
 
     //listado de estudiantes
     Route::get('teacher/my_student', [StudentController::class, 'MyStudent']);
@@ -224,6 +225,8 @@ Route::group(['middleware' => 'parent'], function () {
 
     // el padre puede ver las asignaturas de su hijo
     Route::get('parent/my_student/subject/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
+
+    Route::get('parent/my_student/subject/class_timetable/{class_id}/{subject_id}/{student_id}', [ClassTimetableController::class, 'MyTimetableParent']);
 
 });
 

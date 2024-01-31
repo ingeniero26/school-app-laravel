@@ -91,7 +91,7 @@
                                 <td>{{$value->mobile_number  }}</td>
                                 <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
                                 <td>
-                                    <a href="{{ url('parent/my_stydent/subject/'.$value->id) }}" class="btn btn-success btn-sm">Asignaturas</a>
+                                    <a href="{{ url('parent/my_student/subject/'.$value->id) }}" class="btn btn-success btn-sm">Asignaturas</a>
                                 </td>
                                </tr>
                             @endforeach

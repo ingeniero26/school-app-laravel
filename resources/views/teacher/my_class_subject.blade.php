@@ -42,10 +42,12 @@
                                             <th>Programa</th>
                                             <th>Asignatura</th>
                                             <th>Semestre</th>
+                                            <th>Horario</th>
                                             <th>Tipo</th>
                                             <th>Sede</th>
 
                                             <th>Creado</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,10 +57,21 @@
                                                 <td>{{ $value->class_name }}</td>
                                                 <td>{{ $value->subject_name }}</td>
                                                 <td>{{ $value->semester }}</td>
+                                               <td>
+                                                {{--  @php
+                                                $ClassSubject=$value->getMyTimeTable($value->class_id,$value->subject_id)
+                                                @endphp
+                                               @if(!empty($ClassSubject))
+                                                {{ $ClassSubject->start_time }} to {{ $ClassSubject->end_time }}
+                                               @endif  --}}
+                                                </td>
                                                 <td>{{ $value->type }}</td>
                                                 <td>{{ $value->headquarter_name }}</td>
 
                                                 <td>{{ date('d-m-y H:i A', strtotime($value->created_at)) }}</td>
+                                                <td>
+                                                    <a href="{{ url('teacher/my_class_subject/class_timetable/'.$value->class_id.'/'.$value->subject_id) }}" class="btn btn-warning">Mi Horario</a>
+                                                </td>
 
 
                                             </tr>
