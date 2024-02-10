@@ -7,6 +7,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\HeadquartersController;
 use App\Http\Controllers\JourneysController;
 use App\Http\Controllers\ParentController;
@@ -102,6 +103,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
     Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
 
+    ;
+
 //jornadas
     Route::get('admin/journeys/list', [JourneysController::class, 'list']);
     Route::get('admin/journeys/add', [JourneysController::class, 'add']);
@@ -158,6 +161,22 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
     Route::get('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
     Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
+
+    //ruta examenes
+    Route::get('admin/examinations/exam/list', [ExaminationsController::class, 'exam_list']);
+    Route::get('admin/examinations/exam/add', [ExaminationsController::class, 'exam_add']);
+    Route::post('admin/examinations/exam/add', [ExaminationsController::class, 'exam_insert']);
+    Route::get('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_edit']);
+    Route::post('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_update']);
+    Route::get('admin/examinations/exam/delete/{id}', [ExaminationsController::class, 'exam_delete']);
+    //ruta examenes
+    Route::get('admin/examinations/exam_schedule', [ExaminationsController::class, 'exam_schedule']);
+    Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+
+    Route::post('admin/examinations/exam_schedule/add', [ExaminationsController::class, 'exam_insert']);
+    Route::get('admin/examinations/exam_schedule/edit/{id}', [ExaminationsController::class, 'exam_edit']);
+    Route::post('admin/examinations/exam_schedule/edit/{id}', [ExaminationsController::class, 'exam_update']);
+    Route::get('admin/examinations/exam_schedule/delete/{id}', [ExaminationsController::class, 'exam_delete']);
 
 });
 
