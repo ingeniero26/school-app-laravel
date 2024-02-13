@@ -41,9 +41,8 @@
                                             <th>#</th>
                                             <th>Programa</th>
                                             <th>Asignatura</th>
+                                             <th>Tipo</th>
                                             <th>Semestre</th>
-                                            <th>Horario</th>
-                                            <th>Tipo</th>
                                             <th>Sede</th>
 
                                             <th>Creado</th>
@@ -56,16 +55,17 @@
                                                 <td>{{ $value->id }}</td>
                                                 <td>{{ $value->class_name }}</td>
                                                 <td>{{ $value->subject_name }}</td>
+                                                <td>{{ $value->subject_type }}</td>
+
                                                 <td>{{ $value->semester }}</td>
-                                               <td>
-                                                {{--  @php
+                                              {{-- <td>
+                                                  @php
                                                 $ClassSubject=$value->getMyTimeTable($value->class_id,$value->subject_id)
                                                 @endphp
                                                @if(!empty($ClassSubject))
                                                 {{ $ClassSubject->start_time }} to {{ $ClassSubject->end_time }}
-                                               @endif  --}}
-                                                </td>
-                                                <td>{{ $value->type }}</td>
+                                               @endif
+                                                </td>--}}
                                                 <td>{{ $value->headquarter_name }}</td>
 
                                                 <td>{{ date('d-m-y H:i A', strtotime($value->created_at)) }}</td>

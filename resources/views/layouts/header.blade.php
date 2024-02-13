@@ -313,9 +313,6 @@
                                 </a>
                             </li>
 
-
-
-
                         </ul>
                     </li>
                 @elseif (Auth::user()->user_type == 2)
@@ -344,6 +341,15 @@
                             <i class="nav-icon far fa-user"></i>
                             <p>
                                 Programas y Modulos
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('teacher/my_exam_timetable') }}"
+                            class="nav-link  @if (Request::segment(2) == 'my_exam_timetable') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Mi Horario Examenes
                             </p>
                         </a>
                     </li>
@@ -385,14 +391,7 @@
                             </p>
                         </a>
                     </li>
-                    {{--  <li class="nav-item">
-                        <a href="{{ url('student/admin/list') }}" class="nav-link">
-                            <i class="nav-icon far fa-user"></i>
-                            <p>
-                                Actividades
-                            </p>
-                        </a>
-                    </li>  --}}
+
                     <li class="nav-item">
                         <a href="{{ url('student/my_subject') }}"
                             class="nav-link  @if (Request::segment(2) == 'my_subject') active @endif"">
@@ -420,6 +419,16 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('student/my_exam_timetable') }}"
+                            class="nav-link  @if (Request::segment(2) == 'my_exam_timetable') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Mi Horario Examenes
+                            </p>
+                        </a>
+                    </li>
+
                 @elseif (Auth::user()->user_type == 4)
                     <li class="nav-header">Configuaciòn</li>
                     <li class="nav-item">

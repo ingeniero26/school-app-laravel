@@ -200,6 +200,12 @@ Route::group(['middleware' => 'teacher'], function () {
     //listado de estudiantes
     Route::get('teacher/my_student', [StudentController::class, 'MyStudent']);
 
+
+Route::get('teacher/my_exam_timetable', [ExaminationsController::class, 'MyExamTimetableTeacher']);
+
+
+
+
 });
 
 //alumnos
@@ -222,6 +228,8 @@ Route::group(['middleware' => 'student'], function () {
     //horario
 
     Route::get('student/my_timetable', [ClassTimetableController::class, 'MyTimetable']);
+  // examenes
+    Route::get('student/my_exam_timetable', [ExaminationsController::class, 'MyExamTimetable']);
 
 });
 
@@ -244,6 +252,8 @@ Route::group(['middleware' => 'parent'], function () {
 
     // el padre puede ver las asignaturas de su hijo
     Route::get('parent/my_student/subject/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
+   // horario de examenes
+    Route::get('parent/my_student/exam_timetable/{student_id}', [ExaminationsController::class, 'ParentMyExamTimetable']);
 
     Route::get('parent/my_student/subject/class_timetable/{class_id}/{subject_id}/{student_id}', [ClassTimetableController::class, 'MyTimetableParent']);
 

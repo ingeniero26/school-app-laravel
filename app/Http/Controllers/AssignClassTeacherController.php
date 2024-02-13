@@ -149,7 +149,7 @@ class AssignClassTeacherController extends Controller
     public function MyClassSubject()
     {
 
-        $data['getRecord'] =AssignClassTeacherModel::getMyClassSubject(Auth::user()->id);
+        $data['getRecord'] = AssignClassTeacherModel::getMyClassSubject(Auth::user()->id);
         $data['header_title'] = 'Programas -Modulos Asignados';
         return view('teacher.my_class_subject', $data);
     }
