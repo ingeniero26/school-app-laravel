@@ -21,7 +21,7 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
               @include('_message')
           <div class="card">
             <div class="card-header">
@@ -30,7 +30,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-              <table class="table table-striped">
+              <table class="table table-striped" id="example2">
                 <thead>
                   <tr>
                     <th>Nombre</th>
@@ -68,4 +68,22 @@
   </section>
   <!-- /.content -->
 </div>
+@endsection
+
+@section('script')
+
+<script>
+     $(function () {
+    $("#example2").DataTable({
+      "responsive": true,
+       "lengthChange":
+       false,
+       "autoWidth":
+       false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+
+  });
+</script>
+
 @endsection
