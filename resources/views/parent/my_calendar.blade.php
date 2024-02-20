@@ -18,7 +18,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Calendario Academico</h1>
+            <h1>Calendario Academico <span style="color: blue">({{ $getStudent->name }} {{ $getStudent->last_name }})</span></h1>
           </div>
 
         </div>
@@ -47,18 +47,18 @@
 <script src="{{ url('public/dist/fullcalendar/index.global.js') }}"></script>
 <script>
 var events = new Array();
-@foreach ($getMyTimetable as  $value )
+  @foreach ($getMyTimetable as  $value )
     @foreach ($value['week'] as $week)
         events.push({
             title:'{{ $value['name'] }}',
             daysOfWeek:[{{ $week['fullcalendar_day'] }}],
             startTime:'{{ $week['start_time'] }}',
-            endTime:'{{ $week['end_time'] }}'
+            endtTime:'{{ $week['end_time'] }}'
         });
     @endforeach
 @endforeach
 
-@foreach ($getExamTimetable as  $valueE )
+ @foreach ($getExamTimetable as  $valueE )
     @foreach ($valueE['exam'] as $exam)
         events.push({
             title:'{{ $valueE['name'] }} Asignatura {{ $exam['subject_name'] }} {{ date('h:i A',strtotime($exam['start_time'])) }} a:{{ date('h:i A',strtotime($exam['end_time'])) }}- Salon: {{ $exam['room_number'] }} ',
@@ -82,7 +82,7 @@ var events = new Array();
           navLinks:true,
           editable:false,
           events:events,
-          initialView:'dayGridMonth',
+         // initialView:'timeGridWeek',
           locales: 'es',
         });
         calendar.render();

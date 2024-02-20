@@ -83,7 +83,7 @@ class AssignClassTeacherController extends Controller
                 } else {
                     $subject_class_teacher = new AssignClassTeacherModel;
                     $subject_class_teacher->class_id = $request->class_id;
-                    $subject_class_teacher->headquarter_id = $request->headquarter_id;
+                    // $subject_class_teacher->headquarter_id = $request->headquarter_id;
                     $subject_class_teacher->teacher_id = $teacher_id;
                     $subject_class_teacher->status = trim($request->status);
                     $subject_class_teacher->created_by = Auth::user()->id;
@@ -134,7 +134,7 @@ class AssignClassTeacherController extends Controller
         } else {
             $subject_class_teacher = AssignClassTeacherModel::getAssignClassTeacher($id);
             $subject_class_teacher->class_id = $request->class_id;
-            $subject_class_teacher->headquarter_id = $request->headquarter_id;
+            // $subject_class_teacher->headquarter_id = $request->headquarter_id;
             $subject_class_teacher->teacher_id = $request->teacher_id;
             $subject_class_teacher->status = $request->status;
             $subject_class_teacher->save();

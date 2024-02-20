@@ -90,9 +90,10 @@
                                 <td>{{$value->address  }}</td>
                                 <td>{{$value->mobile_number  }}</td>
                                 <td>{{date('d-m-y H:i A',strtotime($value->created_at )) }}</td>
-                                <td style="width: 300px">
+                                <td style="min-width: 300px">
                                     <a href="{{ url('parent/my_student/subject/'.$value->id) }}" class="btn btn-success btn-sm">Asignaturas</a>
                                     <a href="{{ url('parent/my_student/exam_timetable/'.$value->id) }}" class="btn btn-info btn-sm">Exámenes</a>
+                                    <a href="{{ url('parent/my_student/calendar/'.$value->id) }}" class="btn btn-primary btn-sm">Horario</a>
                                 </td>
                                </tr>
                             @endforeach

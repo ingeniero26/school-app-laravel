@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignClassTeacherModel;
 use App\Models\ClassSubjectModel;
 use App\Models\ClassSubjectTimetableModel;
 use App\Models\ExamScheduleModel;
@@ -98,5 +99,27 @@ class CalendarController extends Controller
         }
         return $result;
 
+    }
+    //padre de familia
+    public function MyCalendarParent($student_id)
+    {
+        $getStudent = User::getSingle($student_id);
+        $data['getMyTimetable'] = $this->getTimetable($getStudent->class_id);
+        $data['getExamTimetable'] = $this->getExamTimetable($getStudent->class_id);
+
+        $data['getStudent'] = $getStudent;
+        $data['header_title'] = 'Calendario Academico';
+        return view('parent.my_calendar', $data);
+
+    }
+
+    //docente
+    public function MyCalendarTeacher()
+    {
+        $teacher_id = Auth::user()->id;
+        $data['getClassTimetable'] = AssignClassTeacherModel::getCalendarTeacher($teacher_id);
+
+        $data['header_title'] = 'Calendario Academico';
+        return view('teacher.my_calendar', $data);
     }
 }

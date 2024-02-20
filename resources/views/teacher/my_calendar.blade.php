@@ -47,17 +47,17 @@
 <script src="{{ url('public/dist/fullcalendar/index.global.js') }}"></script>
 <script>
 var events = new Array();
-@foreach ($getMyTimetable as  $value )
-    @foreach ($value['week'] as $week)
-        events.push({
-            title:'{{ $value['name'] }}',
-            daysOfWeek:[{{ $week['fullcalendar_day'] }}],
-            startTime:'{{ $week['start_time'] }}',
-            endTime:'{{ $week['end_time'] }}'
-        });
-    @endforeach
-@endforeach
+  @foreach ($getClassTimetable as  $value )
 
+        events.push({
+            title:'{{ $value->class_name }}- {{ $value->subject_name }}',
+            daysOfWeek:[{{ $value->fullcalendar_day }}],
+            startTime:'{{ $value->start_time }}',
+            endTime:'{{ $value->end_time }}'
+        });
+
+@endforeach
+{{--
 @foreach ($getExamTimetable as  $valueE )
     @foreach ($valueE['exam'] as $exam)
         events.push({
@@ -69,7 +69,7 @@ var events = new Array();
 
         });
     @endforeach
-@endforeach
+@endforeach  --}}
 
        var calendarID = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarID, {
@@ -82,7 +82,7 @@ var events = new Array();
           navLinks:true,
           editable:false,
           events:events,
-          initialView:'dayGridMonth',
+          //initialView:'dayGridMonth',
           locales: 'es',
         });
         calendar.render();
