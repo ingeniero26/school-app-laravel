@@ -179,6 +179,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/examinations/exam_schedule/edit/{id}', [ExaminationsController::class, 'exam_update']);
     Route::get('admin/examinations/exam_schedule/delete/{id}', [ExaminationsController::class, 'exam_delete']);
 
+//registro examenes
+
+    Route::get('admin/examinations/marks_register', [ExaminationsController::class, 'marks_register']);
+    Route::post('admin/examinations/submit_marks_register', [ExaminationsController::class, 'submit_marks_register']);
+    Route::post('admin/examinations/single_submit_marks_register', [ExaminationsController::class, 'single_submit_marks_register']);
+
 });
 
 //docente
@@ -204,8 +210,6 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/my_exam_timetable', [ExaminationsController::class, 'MyExamTimetableTeacher']);
 
     Route::get('teacher/my_calendar', [CalendarController::class, 'MyCalendarTeacher']);
-
-
 
 });
 
@@ -262,7 +266,6 @@ Route::group(['middleware' => 'parent'], function () {
 
     //horario asignado al hijo
     Route::get('parent/my_student/calendar/{student_id}', [CalendarController::class, 'MyCalendarParent']);
-
 
     Route::get('parent/my_student/subject/class_timetable/{class_id}/{subject_id}/{student_id}', [ClassTimetableController::class, 'MyTimetableParent']);
 

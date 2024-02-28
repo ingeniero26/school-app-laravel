@@ -54,7 +54,7 @@
 
                   </div>
                   <div class="form-group">
-                    <label>Estado</label>
+                    <label>Semestre</label>
                     <select name="semester" id="" class="form-control">
                         <option {{ ($getRecord->semester == 'I')? 'selected' : ''}} value="I">I</option>
                         <option {{ ($getRecord->semester == 'II')? 'selected' : '' }} value="II">II</option>

@@ -312,6 +312,15 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item ">
+                                <a href="{{ url('admin/examinations/marks_register') }}"
+                                    class="nav-link  @if (Request::segment(3) == 'marks_register')  @endif">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                       Registro Exámenes
+                                    </p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>

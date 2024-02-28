@@ -31,6 +31,10 @@
   <link rel="stylesheet" href="{{ url('public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
 
+
+  
+  <link rel="stylesheet" href="{{ url('public/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+
   @yield('style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -89,6 +93,9 @@
 {{--  <script src="{{ url('public/dist/js/demo.js') }}"></script>-->  --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ url('public/dist/js/pages/dashboard.js') }}"></script>
+
+<script src="{{ url('public/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
 
 <!-- DataTables  & Plugins -->
 <script src="{{ url('public/plugins/datatables/jquery.dataTables.min.js') }}"></script>
