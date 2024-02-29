@@ -70,9 +70,15 @@ class ExamScheduleModel extends Model
             ->get();
     }
 
-
-    public static function getMark($student_id,$exam_id,$class_id, $subject_id){
+    public static function getMark($student_id, $exam_id, $class_id, $subject_id)
+    {
         return MarksRegisterModel::CheckAlreadyMark($student_id,
-        $exam_id, $class_id, $subject_id);
+            $exam_id, $class_id, $subject_id);
+    }
+
+    public static function getSingle($id)
+    {
+        return self::find($id);
+
     }
 }
