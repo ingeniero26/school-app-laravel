@@ -9,7 +9,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Listado Descripcion Examenes</h1>
+          <h1>Semestres-Periodos Academicos</h1>
         </div>
         <div class="col-sm-6" style="text-align:right">
           <a href="{{ url('admin/examinations/exam/add') }}" class="btn btn-primary">Nuevo Examen</a>
@@ -82,7 +82,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title"><b> Listado de
-              Clases (Total: {{  $getRecord->total() }})</b> </h3>
+              Periodos (Total: {{  $getRecord->total() }})</b> </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">

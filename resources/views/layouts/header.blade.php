@@ -372,11 +372,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{ url('teacher/admin/list') }}" class="nav-link">
+                     <li class="nav-item ">
+                        <a href="{{ url('teacher/marks_register') }}"
+                            class="nav-link  @if (Request::segment(2) == 'marks_register')  @endif">
                             <i class="nav-icon far fa-user"></i>
                             <p>
-                                Calificaciones
+                                Registro Exámenes
                             </p>
                         </a>
                     </li>
@@ -428,15 +429,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url('student/account') }}"
-                            class="nav-link  @if (Request::segment(2) == 'account') active @endif"">
-                            <i class="nav-icon far fa-user"></i>
-                            <p>
-                                Mi Perfil
-                            </p>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ url('student/my_timetable') }}"
                             class="nav-link  @if (Request::segment(2) == 'my_timetable') active @endif"">
@@ -452,6 +445,24 @@
                             <i class="nav-icon far fa-user"></i>
                             <p>
                                 Mis Examenes
+                            </p>
+                        </a>
+                    </li>
+                      <li class="nav-item">
+                        <a href="{{ url('student/my_exam_result') }}"
+                            class="nav-link  @if (Request::segment(2) == 'my_exam_result') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Resultado Examenes
+                            </p>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="{{ url('student/account') }}"
+                            class="nav-link  @if (Request::segment(2) == 'account') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Mi Perfil
                             </p>
                         </a>
                     </li>
@@ -493,15 +504,7 @@
                             </p>
                         </a>
                     </li>
-                    {{--  <li class="nav-item">
-                        <a href="{{ url('parent/my_calendar_parent') }}"
-                            class="nav-link  @if (Request::segment(2) == 'my_calendar_parent') active @endif"">
-                            <i class="nav-icon far fa-user"></i>
-                            <p>
-                                Calendario Academico
-                            </p>
-                        </a>
-                    </li>  --}}
+                  
                 @endif
 
                 <li class="nav-item">

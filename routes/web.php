@@ -211,6 +211,11 @@ Route::group(['middleware' => 'teacher'], function () {
 
     Route::get('teacher/my_calendar', [CalendarController::class, 'MyCalendarTeacher']);
 
+    //registro notas modulo docente
+    Route::get('teacher/marks_register', [ExaminationsController::class, 'marks_register_teacher']);
+    Route::post('teacher/submit_marks_register', [ExaminationsController::class, 'submit_marks_register']);
+    Route::post('teacher/single_submit_marks_register', [ExaminationsController::class, 'single_submit_marks_register']);
+
 });
 
 //alumnos
@@ -240,6 +245,8 @@ Route::group(['middleware' => 'student'], function () {
 
     Route::get('student/my_calendar', [CalendarController::class, 'MyCalendar']);
 
+    Route::get('student/my_exam_result', [ExaminationsController::class, 'myExamResult']);
+
 });
 
 //padre de familia
@@ -266,6 +273,8 @@ Route::group(['middleware' => 'parent'], function () {
 
     //horario asignado al hijo
     Route::get('parent/my_student/calendar/{student_id}', [CalendarController::class, 'MyCalendarParent']);
+    //resultado examenes
+    Route::get('parent/my_student/exam_result/{student_id}', [ExaminationsController::class, 'ParentMyExamResult']);
 
     Route::get('parent/my_student/subject/class_timetable/{class_id}/{subject_id}/{student_id}', [ClassTimetableController::class, 'MyTimetableParent']);
 

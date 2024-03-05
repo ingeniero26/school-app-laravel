@@ -109,7 +109,7 @@ class CalendarController extends Controller
 
         $data['getStudent'] = $getStudent;
         $data['header_title'] = 'Calendario Academico';
-        return view('parent.my_calendar', $data);
+        return view('parent.my_exam_result', $data);
 
     }
 

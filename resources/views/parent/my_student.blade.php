@@ -94,6 +94,7 @@
                                     <a href="{{ url('parent/my_student/subject/'.$value->id) }}" class="btn btn-success btn-sm">Asignaturas</a>
                                     <a href="{{ url('parent/my_student/exam_timetable/'.$value->id) }}" class="btn btn-info btn-sm">Exámenes</a>
                                     <a href="{{ url('parent/my_student/calendar/'.$value->id) }}" class="btn btn-primary btn-sm">Horario</a>
+                                    <a href="{{ url('parent/my_student/exam_result/'.$value->id) }}" class="btn btn-warning btn-sm">Notas</a>
                                 </td>
                                </tr>
                             @endforeach

@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Registro Examenes</h1>
+                    <h1>Registro Notas-Docente</h1>
                 </div>
 
             </div>
@@ -38,8 +38,8 @@
                                         <select name="exam_id" required class="form-control">
                                             <option value="">Select</option>
                                             @foreach ($getExamR as $exam)
-                                            <option {{ (Request::get('exam_id')==$exam->id) ? 'selected' : '' }}
-                                                value="{{ $exam->id }}">{{ $exam->name }}</option>
+                                            <option {{ (Request::get('exam_id')==$exam->exam_id) ? 'selected' : '' }}
+                                                value="{{ $exam->exam_id }}">{{ $exam->exam_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -48,8 +48,8 @@
                                         <select required class="form-control" name="class_id">
                                             <option value="">Select</option>
                                             @foreach ($getClass as $class)
-                                            <option {{ (Request::get('class_id')==$class->id) ? 'selected' : '' }}
-                                                value="{{ $class->id }}">{{ $class->name }}</option>
+                                            <option {{ (Request::get('class_id')==$class->class_id) ? 'selected' : '' }}
+                                                value="{{ $class->class_id }}">{{ $class->class_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -129,8 +129,9 @@
                                                             Trabajo Clase:
                                                              <input type="hidden" name="mark[{{ $i }}][full_marks]" value="{{ $subject->full_marks }}">
                                                              <input type="hidden" name="mark[{{ $i }}][passing_mark]" value="{{ $subject->passing_mark }}">
-
-                                                             <input type="hidden" name="mark[{{ $i }}][id]" value="{{ $subject->id }}">
+                                                            
+                                                            
+                                                            <input type="hidden" name="mark[{{ $i }}][id]" value="{{ $subject->id }}">
                                                              <input type="hidden" name="mark[{{ $i }}][subject_id]" value="{{ $subject->subject_id }}">
                                                              <input type="text"
                                                              name="mark[{{ $i }}][class_work]"
@@ -255,7 +256,7 @@
             e.preventDefault();
             $.ajax({
                 type: "POST",
-                url: "{{ url('admin/examinations/submit_marks_register')}} ",
+                url: "{{ url('teacher/submit_marks_register')}} ",
                 data: $(this).serialize(),
                  "_token" : "{{ csrf_token() }}",
                 dataType: "json",
@@ -286,7 +287,7 @@
            var exam =$('#exam_'+student_id+subject_id).val();
          $.ajax({
                 type: "POST",
-                url: "{{ url('admin/examinations/single_submit_marks_register')}} ",
+                url: "{{ url('teacher/single_submit_marks_register')}} ",
                 data: {
                    "_token" : "{{ csrf_token() }}",
                     id:id,

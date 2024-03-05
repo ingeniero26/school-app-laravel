@@ -109,13 +109,13 @@
                          <div class="form-group col-md-6">
                             <label> EPS<span style="color: red"></span> </label>
                             <input type="text" class="form-control"
-                                value="{{ old('eps', $getParent->eps) }}" placeholder=""
+                                value="{{ old('eps') }}" placeholder=""
                                 name="eps">
                         </div>
                         <div class="form-group col-md-6">
                             <label> Grupo Sanguineo<span style="color: red"></span> </label>
                             <input type="text" class="form-control"
-                                value="{{ old('blood_group', $getParent->blood_group) }}" placeholder=""
+                                value="{{ old('blood_group') }}" placeholder=""
                                 name="blood_group">
                         </div>
                         <div class="form-group col-md-6">
