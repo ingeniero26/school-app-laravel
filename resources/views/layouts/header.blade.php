@@ -299,7 +299,7 @@
                                     class="nav-link  @if (Request::segment(3) == 'exam') active @endif">
                                     <i class="nav-icon far fa-user"></i>
                                     <p>
-                                       Listado
+                                       Ciclos Académicos
                                     </p>
                                 </a>
                             </li>
@@ -318,6 +318,15 @@
                                     <i class="nav-icon far fa-user"></i>
                                     <p>
                                        Registro Exámenes
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{{ url('admin/examinations/marks_grade') }}"
+                                    class="nav-link  @if (Request::segment(3) == 'marks_grade')  @endif">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                       Grados Académicos
                                     </p>
                                 </a>
                             </li>

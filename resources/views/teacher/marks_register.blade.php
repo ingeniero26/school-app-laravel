@@ -183,6 +183,12 @@
                                                         <div style="margin-bottom:10px">
                                                            Acumulado:  {{ $totalMark  }} <br>
                                                            Nota Minima:  {{ $subject->passing_mark  }} <br>
+                                                            @php
+                                                                $getLoopGrade = App\Models\MarksGradeModel::getGrade($totalMark);
+                                                           @endphp
+                                                           @if(!empty($getLoopGrade))
+                                                             Grado:  {{ $getLoopGrade }} <br>
+                                                           @endif
                                                            @if($totalMark >= $subject->passing_mark  )
                                                            Estado:<span style="color: blue">Aprobado</span>
                                                            @else
@@ -209,11 +215,15 @@
                                                         <p>Total Estudiante:{{ $totalStudentMark }} <br /></p>
                                                     @php
                                                        $porcentage =( $totalStudentMark * 100) /$totalFullMark;
-
+                                                         $getGrade = App\Models\MarksGradeModel::getGrade($porcentage);
                                                        @endphp
                                                        <br>
                                                       <b>Porcentaje:</b>  {{ round($porcentage,2); }}% <br>
-                                                        @if($pass_fail_vali == 0)
+                                                     @if(!empty($getGrade))
+                                                       <b>Grado:</b>  {{ $getGrade; }} <br>
+                                                      @endif
+                                                    
+                                                      @if($pass_fail_vali == 0)
                                                       <b>Estado:</b>  <span style="color: blue">Aprobado</span>
                                                         @else
                                                        <b>Estado:</b> <span style="color: red">Perdido</span>

@@ -35,7 +35,7 @@
               <table class="table table-striped" id="example2">
                 <thead>
                   <tr>
-                    <th>Aignatura</th>
+                    <th>Asignatura</th>
                     <th>Trabajo Clase</th>
                     <th>Tarea</th>
                     <th>Taller</th>
@@ -88,11 +88,21 @@
                                 </b>
                         </td>
                         <td colspan="3">
+                            @php
+                                $porcentage=($total_score * 100) /$full_marks;
+                                 $getGrade = App\Models\MarksGradeModel::getGrade($porcentage);
+                            @endphp
                             <b>Porcentaje:
-                                 {{  round(( $total_score * 100 ) / $full_marks,2) }} %
+                                 {{  round( $porcentage,2) }} %
                                 </b>
                         </td>
-                        <td colspan="5">
+                        <td colspan="3">
+                            
+                            <b>Grado:
+                                 {{  $getGrade }} 
+                                </b>
+                        </td>
+                        <td colspan="2">
                             <b>Estado:
                                  @if($result_validation == 0) 
                                  <span style="color: blue">Aprobaste</span>

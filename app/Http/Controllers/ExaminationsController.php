@@ -7,6 +7,7 @@ use App\Models\ClassModel;
 use App\Models\ClassSubjectModel;
 use App\Models\ExamModel;
 use App\Models\ExamScheduleModel;
+use App\Models\MarksGradeModel;
 use App\Models\MarksRegisterModel;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -466,6 +467,77 @@ class ExaminationsController extends Controller
         $data['getRecord'] = $result;
         $data['header_title'] = 'Resultado Examenes ';
         return view('parent.my_exam_result', $data);
+    }
+
+    //registro grados academicos
+    public function marks_grade()
+    {
+        $data['getRecord'] = MarksGradeModel::getRecord();
+
+        $data['header_title'] = 'Grados';
+        return view('admin.examinations.marks_grade.list', $data);
+    }
+
+    public function marks_grade_add()
+    {
+        $data['header_title'] = 'Add Grado';
+        return view('admin.examinations.marks_grade.add', $data);
+    }
+
+    public function marks_grade_insert(Request $request)
+    {
+        //valida si el nombrede la clase si ya esta en el sistema
+        // request()->validate([
+        //     'name'=> 'required|name|unique:class'
+        // ]);
+
+        $grade = new MarksGradeModel;
+        $grade->name = $request->name;
+        $grade->percent_from = $request->percent_from;
+        $grade->percent_to = $request->percent_to;
+        //$class->status = $request->status;
+        $grade->created_by = Auth::user()->id;
+
+        $grade->save();
+
+        return redirect('admin/examinations/marks_grade')->with('success', 'registrado con exito');
+    }
+
+    public function marks_grade_delete($id)
+    {
+        $exam = MarksGradeModel::getMarkGrade($id);
+        $exam->is_delete = 1;
+        $exam->save();
+        return redirect()->back()->with('success', 'grado eliminado con exito');
+
+    }
+
+    public function marks_grade_edit($id)
+    {
+        $data['getRecord'] = MarksGradeModel::getMarkGrade($id);
+        if (!empty($data['getRecord'])) {
+            $data['header_title'] = 'Editar Examen';
+            return view('admin.examinations.marks_grade.edit', $data);
+        } else {
+            abort(404);
+        }
+
+    }
+
+    public function marks_grade_update($id, Request $request)
+    {
+        // request()->validate([
+        //     'email'=> 'required|email|unique:users,email,',$id
+        // ]);
+        $grade = MarksGradeModel::getMarkGrade($id);
+        $grade->name = $request->name;
+
+        $grade->percent_from = $request->percent_from;
+        $grade->percent_to = $request->percent_to;
+        // $class->status = $request->status;
+        $grade->save();
+
+        return redirect('admin/examinations/marks_grade')->with('success', 'Examen editado con exito');
     }
 
 }
