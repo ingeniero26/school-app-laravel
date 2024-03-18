@@ -31,7 +31,7 @@
                   <div class="form-group">
                     <label>Nombre Clase</label>
                     <select name="class_id" id=""
-                    class="form-control" required>
+                    class="form-control select2" required style="width: 100%;">
                         <option value="">Seleccione una clase</option>
                        @foreach($getClassSubject as $class)
                            <option value="{{ $class->id }}">{{ $class->name }}</option>
@@ -98,5 +98,14 @@
     <!-- /.content -->
   </div>
 
+@endsection
+
+
+@section('script')
+    <script type="text/javascript">
+       $(function () {
+        $('.select2').select2()
+       });
+    </script>
 @endsection
 

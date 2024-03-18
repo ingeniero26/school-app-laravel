@@ -36,7 +36,7 @@
                               <div class="form-group col-md-3">
                                 <label>Nombre Programa</label>
                                   <select name="class_id" id=""
-                                class="form-control getClassSubject" required>
+                                class="form-control getClassSubject select2" required>
                                     <option value="">Seleccione un programa</option>
                                 @foreach($getClassSubject as $class)
                                     <option {{ (Request::get('class_id') == $class->id) ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name }}</option>
@@ -46,7 +46,7 @@
                               <div class="form-group col-md-3">
                                 <label>Asignatura</label>
 
-                               <select name="subject_id" id=""  class="form-control getSubject" required>
+                               <select name="subject_id" id=""  class="form-control getSubject select2" required>
                                     <option value="">Seleccione </option>
                                     @if(!empty($getSubject))
                                 @foreach($getSubject as $subject)
@@ -156,6 +156,9 @@
             },
         });
     });
+     $(function () {
+        $('.select2').select2()
+       });
 </script>
 
 @endsection

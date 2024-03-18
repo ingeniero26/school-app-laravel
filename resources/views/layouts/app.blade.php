@@ -30,9 +30,11 @@
   <link rel="stylesheet" href="{{ url('public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ url('public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
+<!-- Select2 -->
+  <link rel="stylesheet" href="{{ url('public/plugins/select2/css/select2.min.css' )}}">
+  <link rel="stylesheet" href="{{ url('public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
 
-  
   <link rel="stylesheet" href="{{ url('public/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 
   @yield('style')
@@ -95,6 +97,12 @@
 <script src="{{ url('public/dist/js/pages/dashboard.js') }}"></script>
 
 <script src="{{ url('public/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+
+<script src="{{ url('public/plugins/select2/js/select2.full.min.js') }}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{ url('public/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+
 
 
 <!-- DataTables  & Plugins -->

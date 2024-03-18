@@ -137,11 +137,11 @@
                 @if (Auth::user()->user_type == 1)
                     <li class="nav-header">Configuaciòn</li>
 
-                    <li class="nav-item @if(Request::segment(2) == 'dashboard'
-                             || Request::segment(2) == 'admin' || Request::segment(2) == 'student'
-                            ||Request::segment(2) == 'teacher'
-                            ||Request::segment(2) == 'parent')
-                             menu-is-opening menu-open @endif">
+                    <li class="nav-item @if (Request::segment(2) == 'dashboard' ||
+                            Request::segment(2) == 'admin' ||
+                            Request::segment(2) == 'student' ||
+                            Request::segment(2) == 'teacher' ||
+                            Request::segment(2) == 'parent') menu-is-opening menu-open @endif">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
@@ -199,11 +199,11 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item @if(Request::segment(2) == 'class'
-                             || Request::segment(2) == 'subject' || Request::segment(2) == 'assign_subject'
-                            ||Request::segment(2) == 'assign_class_teacher'
-                            ||Request::segment(2) == 'class_timetable')
-                             menu-is-opening menu-open @endif">
+                    <li class="nav-item @if (Request::segment(2) == 'class' ||
+                            Request::segment(2) == 'subject' ||
+                            Request::segment(2) == 'assign_subject' ||
+                            Request::segment(2) == 'assign_class_teacher' ||
+                            Request::segment(2) == 'class_timetable') menu-is-opening menu-open @endif">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
@@ -282,10 +282,9 @@
                         </ul>
                     </li>
 
-                      <li class="nav-item @if(Request::segment(2) == 'examinations')
-                             menu-is-opening menu-open @endif">
-                        <a href="#" class="nav-link @if(Request::segment(2) == 'examinations')
-                             menu-is-opening menu-open @endif">
+                    <li class="nav-item @if (Request::segment(2) == 'examinations') menu-is-opening menu-open @endif">
+                        <a href="#"
+                            class="nav-link @if (Request::segment(2) == 'examinations') menu-is-opening menu-open @endif">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Exámenes
@@ -299,7 +298,7 @@
                                     class="nav-link  @if (Request::segment(3) == 'exam') active @endif">
                                     <i class="nav-icon far fa-user"></i>
                                     <p>
-                                       Ciclos Académicos
+                                        Ciclos Académicos
                                     </p>
                                 </a>
                             </li>
@@ -308,7 +307,7 @@
                                     class="nav-link  @if (Request::segment(3) == 'exam_schedule')  @endif">
                                     <i class="nav-icon far fa-user"></i>
                                     <p>
-                                       Calendario Examenes
+                                        Calendario Examenes
                                     </p>
                                 </a>
                             </li>
@@ -317,7 +316,7 @@
                                     class="nav-link  @if (Request::segment(3) == 'marks_register')  @endif">
                                     <i class="nav-icon far fa-user"></i>
                                     <p>
-                                       Registro Exámenes
+                                        Registro Exámenes
                                     </p>
                                 </a>
                             </li>
@@ -326,15 +325,49 @@
                                     class="nav-link  @if (Request::segment(3) == 'marks_grade')  @endif">
                                     <i class="nav-icon far fa-user"></i>
                                     <p>
-                                       Grados Académicos
+                                        Grados Académicos
                                     </p>
                                 </a>
                             </li>
 
                         </ul>
                     </li>
+                    <li class="nav-item @if (Request::segment(2) == 'attendance') menu-is-opening menu-open @endif">
+                        <a href="#"
+                            class="nav-link @if (Request::segment(2) == 'attendance') menu-is-opening menu-open @endif">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Asistencia
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item ">
+                                <a href="{{ url('admin/attendance/student') }}"
+                                    class="nav-link  @if (Request::segment(3) == 'student') active @endif">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Listado
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{{ url('admin/attendance/report') }}"
+                                    class="nav-link  @if (Request::segment(3) == 'report')  @endif">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Reporte Asistencia
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
                 @elseif (Auth::user()->user_type == 2)
-                <li class="nav-header">Configuaciòn</li>
+                    <li class="nav-header">Configuaciòn</li>
                     <li class="nav-item">
                         <a href="{{ url('teacher/dashboard') }}"
                             class="nav-link @if (Request::segment(2) == 'dashboard') active @endif">
@@ -381,7 +414,7 @@
                         </a>
                     </li>
 
-                     <li class="nav-item ">
+                    <li class="nav-item ">
                         <a href="{{ url('teacher/marks_register') }}"
                             class="nav-link  @if (Request::segment(2) == 'marks_register')  @endif">
                             <i class="nav-icon far fa-user"></i>
@@ -389,6 +422,39 @@
                                 Registro Exámenes
                             </p>
                         </a>
+                    </li>
+                     <li class="nav-item @if (Request::segment(2) == 'attendance') menu-is-opening menu-open @endif">
+                        <a href="#"
+                            class="nav-link @if (Request::segment(2) == 'attendance') menu-is-opening menu-open @endif">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Asistencia
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item ">
+                                <a href="{{ url('teacher/attendance/student') }}"
+                                    class="nav-link  @if (Request::segment(3) == 'student') active @endif">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Listado
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{{ url('teacher/attendance/report') }}"
+                                    class="nav-link  @if (Request::segment(3) == 'report')  @endif">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Reporte Asistencia
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('teacher/account') }}"
@@ -457,7 +523,7 @@
                             </p>
                         </a>
                     </li>
-                      <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{ url('student/my_exam_result') }}"
                             class="nav-link  @if (Request::segment(2) == 'my_exam_result') active @endif"">
                             <i class="nav-icon far fa-user"></i>
@@ -466,7 +532,7 @@
                             </p>
                         </a>
                     </li>
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{ url('student/account') }}"
                             class="nav-link  @if (Request::segment(2) == 'account') active @endif"">
                             <i class="nav-icon far fa-user"></i>
@@ -475,7 +541,6 @@
                             </p>
                         </a>
                     </li>
-
                 @elseif (Auth::user()->user_type == 4)
                     <li class="nav-header">Configuaciòn</li>
                     <li class="nav-item">
@@ -513,37 +578,36 @@
                             </p>
                         </a>
                     </li>
-                  
                 @endif
+            <li class="nav-item">
+                        <a href="{{ url('admin/change_password') }}"
+                            class="nav-link  @if (Request::segment(2) == 'change_password') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Cambiar Clave
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/account') }}"
+                            class="nav-link  @if (Request::segment(2) == 'account') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Mi Perfil
+                            </p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('admin/change_password') }}"
-                        class="nav-link  @if (Request::segment(2) == 'change_password') active @endif"">
-                        <i class="nav-icon far fa-user"></i>
-                        <p>
-                            Cambiar Clave
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/account') }}"
-                        class="nav-link  @if (Request::segment(2) == 'account') active @endif"">
-                        <i class="nav-icon far fa-user"></i>
-                        <p>
-                            Mi Perfil
-                        </p>
-                    </a>
-                </li>
 
+                    <li class="nav-item">
+                        <a href="{{ url('logout') }}" class="nav-link">
+                            <i class="nav-icon fas fa-columns"></i>
+                            <p>
+                                Salir
+                            </p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('logout') }}" class="nav-link">
-                        <i class="nav-icon fas fa-columns"></i>
-                        <p>
-                            Salir
-                        </p>
-                    </a>
-                </li>
 
 
 

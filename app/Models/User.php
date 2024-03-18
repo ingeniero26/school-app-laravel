@@ -113,7 +113,7 @@ class User extends Authenticatable
     public static function getStudentClass($class_id)
     {
         return self::select('users.id',
-         'users.name', 'users.last_name')
+            'users.name', 'users.last_name', 'roll_number')
             ->where('users.user_type', '=', 3)
             ->where('users.is_delete', '=', 0)
             ->where('users.class_id', '=', $class_id)
@@ -345,5 +345,10 @@ class User extends Authenticatable
             ->orderBy('id', 'desc')
             ->get();
         return $return;
+    }
+
+    public static function getAttendance($student_id, $class_id, $attendance_date)
+    {
+        return StudentAttendanceModel::CheckAlreadyAttendance($student_id, $class_id, $attendance_date);
     }
 }

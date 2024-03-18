@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssignClassTeacherController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ClassController;
@@ -194,6 +195,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/examinations/marks_grade/edit/{id}', [ExaminationsController::class, 'marks_grade_update']);
     Route::get('admin/examinations/marks_grade/delete/{id}', [ExaminationsController::class, 'marks_grade_delete']);
 
+//modulo control de asistencia
+    Route::get('admin/attendance/student', [AttendanceController::class, 'AttendanceStudent']);
+    Route::post('admin/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
+
+    Route::get('admin/attendance/report', [AttendanceController::class, 'AttendanceReport']);
+
 });
 
 //docente
@@ -224,6 +231,12 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/marks_register', [ExaminationsController::class, 'marks_register_teacher']);
     Route::post('teacher/submit_marks_register', [ExaminationsController::class, 'submit_marks_register']);
     Route::post('teacher/single_submit_marks_register', [ExaminationsController::class, 'single_submit_marks_register']);
+
+//modulo control de asistencia
+    Route::get('teacher/attendance/student', [AttendanceController::class, 'AttendanceStudentTeacher']);
+    Route::post('teacher/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
+
+    Route::get('teacher/attendance/report', [AttendanceController::class, 'AttendanceReportTeacher']);
 
 });
 
