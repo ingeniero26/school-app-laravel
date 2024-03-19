@@ -88,4 +88,14 @@ class AttendanceController extends Controller
         return view('teacher.attendance.student', $data);
     }
 
+    //asistenai modulo estudiantes
+    public function myAttendanceStudent()
+    {
+
+        $data['getRecord'] = StudentAttendanceModel::getRecordStudent(Auth::user()->id);
+        $data['getClass'] = StudentAttendanceModel::getClassStudent(Auth::user()->id);
+
+        $data['header_title'] = 'Reporte';
+        return view('student.my_attendance', $data);
+    }
 }
