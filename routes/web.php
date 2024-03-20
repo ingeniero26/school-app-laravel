@@ -268,8 +268,7 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('student/my_calendar', [CalendarController::class, 'MyCalendar']);
 
     Route::get('student/my_exam_result', [ExaminationsController::class, 'myExamResult']);
-   
-   
+
     Route::get('student/my_attendance', [AttendanceController::class, 'myAttendanceStudent']);
 
 });
@@ -300,6 +299,8 @@ Route::group(['middleware' => 'parent'], function () {
     Route::get('parent/my_student/calendar/{student_id}', [CalendarController::class, 'MyCalendarParent']);
     //resultado examenes
     Route::get('parent/my_student/exam_result/{student_id}', [ExaminationsController::class, 'ParentMyExamResult']);
+    //
+    Route::get('parent/my_student/attendance/{student_id}', [AttendanceController::class, 'ParentMyAttendanceStudent']);
 
     Route::get('parent/my_student/subject/class_timetable/{class_id}/{subject_id}/{student_id}', [ClassTimetableController::class, 'MyTimetableParent']);
 

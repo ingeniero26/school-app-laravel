@@ -61,10 +61,16 @@
                                        class="form-control" value="{{ Request::get('student_last_name') }}">
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label>Fecha Asistencia</label>
-                                      <input type="date" name="attendance_date"
+                                        <label>Inicio</label>
+                                      <input type="date" name="start_attendance_date"
                                        class="form-control"
-                                        value="{{ Request::get('attendance_date') }}">
+                                        value="{{ Request::get('start_attendance_date') }}">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Fin</label>
+                                      <input type="date" name="end_attendance_date"
+                                       class="form-control"
+                                        value="{{ Request::get('end_attendance_date') }}">
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label>Tipo Asistencia</label>

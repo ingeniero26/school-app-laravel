@@ -8,9 +8,9 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                {{--  <div class="col-sm-6">
-                    <h1>Reporte Asistencia Estudiantes <span style="color: blue"> (Total:{{ $getRecord->total() }}) </span> </h1>
-                </div>  --}}
+                  <div class="col-sm-6">
+                    <h1> Asistencia  <span style="color: blue"> ({{ $getStudent->name }} {{ $getStudent->last_name }}) (Total:{{ $getRecord->total() }}) </span> </h1>
+                </div> 
 
             </div>
         </div><!-- /.container-fluid -->
@@ -23,8 +23,7 @@
             <div class="row">
                 <!-- /.col -->
                 <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="card card-default">
+                      <div class="card card-default">
                         <div class="card-header">
                             <h3 class="card-title">Buscar Estudiante</h3>
                         </div>
@@ -34,7 +33,7 @@
                             <div class="card-body">
                                 <div class="row">
 
-                                    <div class="form-group col-md-2">
+                                   <div class="form-group col-md-2">
                                         <label>Programa</label>
                                         <select  class="form-control select2"
                                          name="class_id">
@@ -45,21 +44,9 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                       <div class="form-group col-md-1">
-                                        <label>ID</label>
-                                      <input type="text" name="student_id"
-                                       class="form-control" value="{{ Request::get('student_id') }}">
-                                    </div>
-                                       <div class="form-group col-md-2">
-                                        <label> Estudiante</label>
-                                      <input type="text" name="student_name"
-                                       class="form-control" value="{{ Request::get('student_name') }}">
-                                    </div>
-                                       <div class="form-group col-md-2">
-                                        <label> Apellido</label>
-                                      <input type="text" name="student_last_name"
-                                       class="form-control" value="{{ Request::get('student_last_name') }}">
-                                    </div>
+                                                                     
+                                 
+                                     
                                     <div class="form-group col-md-2">
                                         <label>Fecha Inicio</label>
                                       <input type="date" name="start_attendance_date"
@@ -87,7 +74,7 @@
                                     <div class="form-group col-md-2">
                                         <button type="submit" class="btn btn-primary" style="margin-top: 30px">
                                             Buscar</button>
-                                        <a href="{{ url('teacher/attendance/report') }}" class="btn btn-success"
+                                        <a href="{{ url('parent/my_student/attendance/'.$getStudent->id) }}" class="btn btn-success"
                                             style="margin-top: 30px">Limpiar</a>
                                     </div>
                                 </div>
@@ -95,35 +82,25 @@
                             <!-- /.card-body -->
                         </form>
                     </div>
-
-
-
+               
                      <div class="card-header">
-                            <h3 class="card-title"><b> Estudiantes      </h3>
+                            <h3 class="card-title"><b> Asistencia      </h3>
                         </div>
 
                     <div class="card-body p-0" style="overflow: auto" >
                      <table class="table table-striped table-responsive">
                        <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Estudiante</th>
+                          
                             <th>Programa</th>
                             <th>Tipo Asistencia</th>
                             <th>Fecha Asistencia</th>
-                            <th>Usuario</th>
                             <th>Creado</th>
                         </tr>
                        </thead>
                         <tbody>
-                            @if(!empty($getRecord))
-
-                             @forelse ($getRecord as $value)
+                           @forelse ($getRecord as $value)
                                 <tr>
-                                    <td>{{$value->student_id  }}</td>
-
-                                    <td>{{$value->student_name  }} {{$value->student_last_name  }}</td>
-
                                     <td>{{$value->class_name  }}</td>
                                     <td>
                                         @if($value->attendance_type == 1)
@@ -138,7 +115,6 @@
                                     </td>
                                     <td>{{date('d-m-Y',strtotime($value->attendance_date )) }}</td>
 
-                                    <td>{{$value->created_by_name}}</td>
                                     <td>{{date('d-m-Y H:i A',strtotime($value->created_at )) }}</td>
 
 
@@ -148,19 +124,12 @@
                                     <td colspan="100%">No hay datos</td>
                                 </tr>
                             @endforelse
-                            @else
-                             <tr>
-                                    <td colspan="100%">No hay datos</td>
-                                </tr>
-                        @endif
 
                        </tbody>
                     </table>
-                     @if(!empty($getRecord))
                       <div style="padding:10px; float:right;">
                          {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                     </div>
-                    @endif
                     </div>
 
 

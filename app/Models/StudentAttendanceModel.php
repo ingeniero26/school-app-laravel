@@ -46,9 +46,13 @@ class StudentAttendanceModel extends Model
             $return = $return->where('student_attendance.class_id', '=', Request::get('class_id'));
         }
 
-        if (!empty(Request::get('attendance_date'))) {
-            $return = $return->where('student_attendance.attendance_date', '=',
-                Request::get('attendance_date'));
+        if (!empty(Request::get('start_attendance_date'))) {
+            $return = $return->where('student_attendance.attendance_date', '>=',
+                Request::get('start_attendance_date'));
+        }
+        if (!empty(Request::get('end_attendance_date'))) {
+            $return = $return->where('student_attendance.attendance_date', '<=',
+                Request::get('end_attendance_date'));
         }
         if (!empty(Request::get('attendance_type'))) {
             $return = $return->where('student_attendance.attendance_type', '=', Request::get('attendance_type'));
@@ -87,9 +91,13 @@ class StudentAttendanceModel extends Model
                 $return = $return->where('student_attendance.class_id', '=', Request::get('class_id'));
             }
 
-            if (!empty(Request::get('attendance_date'))) {
-                $return = $return->where('student_attendance.attendance_date', '=',
-                    Request::get('attendance_date'));
+            if (!empty(Request::get('start_attendance_date'))) {
+                $return = $return->where('student_attendance.attendance_date', '>=',
+                    Request::get('start_attendance_date'));
+            }
+            if (!empty(Request::get('end_attendance_date'))) {
+                $return = $return->where('student_attendance.attendance_date', '<=',
+                    Request::get('end_attendance_date'));
             }
             if (!empty(Request::get('attendance_type'))) {
                 $return = $return->where('student_attendance.attendance_type', '=', Request::get('attendance_type'));
@@ -111,10 +119,16 @@ class StudentAttendanceModel extends Model
             'class.name as class_name')
             ->join('class', 'class.id', '=', 'student_attendance.class_id')
             ->where('student_attendance.student_id', '=', $student_id);
-        if (!empty(Request::get('attendance_date'))) {
-            $return = $return->where('student_attendance.attendance_date', '=',
-                Request::get('attendance_date'));
+
+        if (!empty(Request::get('start_attendance_date'))) {
+            $return = $return->where('student_attendance.attendance_date', '>=',
+                Request::get('start_attendance_date'));
         }
+        if (!empty(Request::get('end_attendance_date'))) {
+            $return = $return->where('student_attendance.attendance_date', '<=',
+                Request::get('end_attendance_date'));
+        }
+
         if (!empty(Request::get('attendance_type'))) {
             $return = $return->where('student_attendance.attendance_type', '=', Request::get('attendance_type'));
         }
