@@ -248,6 +248,11 @@ Route::group(['middleware' => 'teacher'], function () {
 
     Route::get('teacher/attendance/report', [AttendanceController::class, 'AttendanceReportTeacher']);
 
+    Route::get('teacher/my_notice_board', [CommunicateController::class, 'myNoticeBoardTeacher']);
+
+
+
+
 });
 
 //alumnos
@@ -280,6 +285,8 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('student/my_exam_result', [ExaminationsController::class, 'myExamResult']);
 
     Route::get('student/my_attendance', [AttendanceController::class, 'myAttendanceStudent']);
+   // noticias
+    Route::get('student/my_notice_board', [CommunicateController::class, 'myNoticeBoardStudent']);
 
 });
 

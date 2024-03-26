@@ -23,10 +23,8 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <!-- /.col -->
+
         <div class="col-md-12">
-
-
             <div class="card card-default">
               <div class="card-header">
                 <h3 class="card-title">Buscar</h3>

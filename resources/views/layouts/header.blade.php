@@ -485,9 +485,16 @@
                                     </p>
                                 </a>
                             </li>
-
-
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('teacher/my_notice_board') }}"
+                            class="nav-link  @if (Request::segment(2) == 'my_notice_board') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Mis Noticias
+                            </p>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('teacher/account') }}"
@@ -575,6 +582,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('student/my_notice_board') }}"
+                            class="nav-link  @if (Request::segment(2) == 'my_notice_board') active @endif"">
+                            <i class="nav-icon far fa-user"></i>
+                            <p>
+                                Mis Noticias
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('student/account') }}"
                             class="nav-link  @if (Request::segment(2) == 'account') active @endif"">
                             <i class="nav-icon far fa-user"></i>
@@ -630,8 +646,7 @@
                             </p>
                         </a>
                     </li>
-            
-            
+                    
                 <li class="nav-item">
                         <a href="{{ url('admin/change_password') }}"
                             class="nav-link  @if (Request::segment(2) == 'change_password') active @endif"">
@@ -642,8 +657,6 @@
                         </a>
                     </li>
                  
-
-
                     <li class="nav-item">
                         <a href="{{ url('logout') }}" class="nav-link">
                             <i class="nav-icon fas fa-columns"></i>
@@ -652,9 +665,6 @@
                             </p>
                         </a>
                     </li>
-
-
-
 
             </ul>
         </nav>

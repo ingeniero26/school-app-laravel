@@ -86,4 +86,21 @@ class CommunicateController extends Controller
         return redirect('admin/communicate/notice_board')->with('success', 'Noticia eliminado con exito');
 
     }
+
+    //estudiantes modulo noticias
+    public function myNoticeBoardStudent()
+    {
+        $data['getRecord'] = NoticeBoardModel::getRecordUser(Auth::user()->user_type);
+        $data['header_title'] = 'Mis Noticias';
+        return view('student.my_notice_baord', $data);
+
+    }
+    //estudiantes modulo noticias
+    public function myNoticeBoardTeacher()
+    {
+        $data['getRecord'] = NoticeBoardModel::getRecordUser(Auth::user()->user_type);
+        $data['header_title'] = 'Mis Noticias';
+        return view('teacher.my_notice_baord', $data);
+
+    }
 }
