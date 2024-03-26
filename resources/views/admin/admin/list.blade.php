@@ -25,12 +25,12 @@
       <div class="row">
         <!-- /.col -->
         <div class="col-md-12">
-            <!-- general form elements -->
+
             <div class="card card-default">
               <div class="card-header">
                 <h3 class="card-title">Buscar</h3>
               </div>
-              <!-- form start -->
+
               <form method="get" action="">
 
                 <div class="card-body">
@@ -71,22 +71,15 @@
 
 
                 </div>
-                <!-- /.card-body -->
+
               </form>
             </div>
-            <!-- /.card -->
-
-            <!-- general form elements -->
-
 
 
           </div>
-          <!--/.col (left) -->
-          <!-- right column -->
 
-          <!--/.col (right) -->
         </div>
-        <!-- /.row -->
+
             @include('_message')
           <div class="card">
             <div class="card-header">
@@ -145,7 +138,7 @@
 @endsection
 
 @section('script')
-
+<script>
  $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,

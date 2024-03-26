@@ -8,6 +8,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\ClassTimetableController;
+use App\Http\Controllers\CommunicateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\HeadquartersController;
@@ -200,6 +201,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
 
     Route::get('admin/attendance/report', [AttendanceController::class, 'AttendanceReport']);
+
+    //modulo cumunicaciones  y envio correo
+
+    Route::get('admin/communicate/notice_board', [CommunicateController::class, 'NoticeBoard']);
+    Route::get('admin/communicate/notice_board/add', [CommunicateController::class, 'NoticeBoardAdd']);
+    Route::post('admin/communicate/notice_board/add', [CommunicateController::class, 'NoticeBoardInsert']);
+    Route::get('admin/communicate/notice_board/edit/{id}', [CommunicateController::class, 'NoticeBoardEdit']);
+    Route::post('admin/communicate/notice_board/edit/{id}', [CommunicateController::class, 'NoticeBoardUpdate']);
+    Route::get('admin/communicate/notice_board/delete/{id}', [CommunicateController::class, 'NoticeBoardDelete']);
 
 });
 
